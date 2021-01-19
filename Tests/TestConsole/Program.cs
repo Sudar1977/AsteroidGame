@@ -20,6 +20,7 @@ namespace TestConsole
             Player player1 = new Player(surname, new DateTime(1977, 03, 23, 9, 0, 0));
 
             Console.WriteLine(player1.GetName());
+            Console.WriteLine(player1.Name);
             Console.ReadLine();
         }
     }
@@ -52,6 +53,20 @@ namespace TestConsole
         {
             _Name = Name;
         }
+
+        public string Name
+        {
+            get
+            {
+                return _Name;
+            }
+            //set
+            //{
+            //    _Name = value;
+            //}
+        }
+
+        public string Surname { get; } = "";// set; }
 
     }
 }
