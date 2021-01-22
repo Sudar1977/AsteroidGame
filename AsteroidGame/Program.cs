@@ -26,6 +26,8 @@ namespace AsteroidGame
             game_form.Height = 600;
 #endif
             game_form.Show();
+            Game.Initialize(game_form);
+            Game.Draw();
 
             //System.Threading.Thread.Sleep(2000);
             Application.Run(game_form);
