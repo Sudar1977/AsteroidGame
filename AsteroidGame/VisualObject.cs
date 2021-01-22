@@ -37,6 +37,8 @@ namespace AsteroidGame
                 _Direction.Y *= -1;
         }
 
+ 
+
 
     }
 }
