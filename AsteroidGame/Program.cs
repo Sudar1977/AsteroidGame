@@ -11,12 +11,27 @@ namespace AsteroidGame
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
-        [STAThread]
+        [STAThread] 
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            Form game_form = new Form();
+#if false
+            game_form.Width = Screen.PrimaryScreen.WorkingArea.Width;
+            game_form.Height = Screen.PrimaryScreen.WorkingArea.Height;
+#else
+            game_form.Width = 800;
+            game_form.Height = 600;
+#endif
+            game_form.Show();
+            Game.Initialize(game_form);
+            Game.Load();
+            Game.Draw();
+
+            //System.Threading.Thread.Sleep(2000);
+            Application.Run(game_form);
         }
     }
 }

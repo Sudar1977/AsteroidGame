@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Player.cs" />
+    <Compile Include="PrefixPrinter.cs" />
+    <Compile Include="Printer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vector2D.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
