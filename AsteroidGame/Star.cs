@@ -9,20 +9,30 @@ namespace AsteroidGame
 {
     class Star : VisualObject
     {
-        public Star(Point Position, Point Direction, int Size) 
-            : base (Position,Direction,new Size(Size,Size)) 
+        public Star(Point Position, Point Direction, int Size)
+            : base(Position, Direction, new Size(Size, Size))
         {
 
-        }
-
-        public override void Update()
-        {
-            base.Update();
         }
 
         public override void Draw(Graphics g)
         {
-            base.Draw(g);
+            g.DrawLine(Pens.WhiteSmoke,
+                       _Position.X, _Position.Y,
+                       _Position.X + _Size.Width, _Position.Y + _Size.Height);
+            g.DrawLine(Pens.White,
+                       _Position.X + _Size.Width, _Position.Y,
+                       _Position.X, _Position.Y + _Size.Height);
+            //base.Draw(g);
         }
+
+        public override void Update()
+        {
+            _Position.X += _Direction.X;
+            if (_Position.X < 0) 
+                _Direction.X *= -1;
+        }
+
+
     }
 }
