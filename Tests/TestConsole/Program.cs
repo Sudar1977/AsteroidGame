@@ -39,6 +39,8 @@ namespace TestConsole
 
             double lenght = v4;
 #endif
+
+#if false
             Printer printer = new Printer();
             PrefixPrinter prefixPrinter = new PrefixPrinter();
             prefixPrinter.Prefix = "!!!!!!!-------!!!!!!!";
@@ -55,6 +57,10 @@ namespace TestConsole
 
             printer.Print("345");
             printer1.Print("678");
+#endif
+
+
+
 
             Console.ReadLine();
         }
