@@ -59,7 +59,11 @@ namespace TestConsole
             printer1.Print("678");
 #endif
 
-
+            //Lesson2
+            //Logger log = new Logger();
+            //log.LogInformation("Message1");
+            //log.LogWarning("Info message");
+            //log.LogError("Error message");
 
 
             Console.ReadLine();

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Loggers\Logger.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PrefixPrinter.cs" />
     <Compile Include="Printer.cs" />
