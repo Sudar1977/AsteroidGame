@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Loggers\ConsoleLogger.cs" />
+    <Compile Include="Loggers\DebugOutputLogger.cs" />
     <Compile Include="Loggers\Logger.cs" />
     <Compile Include="Loggers\TextFileLogger.cs" />
     <Compile Include="Player.cs" />

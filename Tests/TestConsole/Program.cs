@@ -62,7 +62,8 @@ namespace TestConsole
 
             //Lesson2
             //Logger log = new TextFileLogger("text.log");
-            Logger log = new ConsoleLogger();
+            //Logger log = new ConsoleLogger();
+            Logger log = new DebugOutputLogger();
             log.LogInformation("Message1");
             log.LogWarning("Info message");
             log.LogError("Error message");
