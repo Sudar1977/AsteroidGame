@@ -60,10 +60,12 @@ namespace TestConsole
 #endif
 
             //Lesson2
-            //Logger log = new Logger();
-            //log.LogInformation("Message1");
-            //log.LogWarning("Info message");
-            //log.LogError("Error message");
+            Logger log = new TextFileLogger("text.log");
+            log.LogInformation("Message1");
+            log.LogWarning("Info message");
+            log.LogError("Error message");
+
+            log.Flush();
 
 
             Console.ReadLine();
