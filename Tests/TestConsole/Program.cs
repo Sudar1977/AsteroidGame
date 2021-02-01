@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestConsole.Loggers;
 
 namespace TestConsole
 {
@@ -60,7 +61,8 @@ namespace TestConsole
 #endif
 
             //Lesson2
-            Logger log = new TextFileLogger("text.log");
+            //Logger log = new TextFileLogger("text.log");
+            Logger log = new ConsoleLogger();
             log.LogInformation("Message1");
             log.LogWarning("Info message");
             log.LogError("Error message");

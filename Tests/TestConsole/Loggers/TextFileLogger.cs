@@ -10,6 +10,8 @@ namespace TestConsole
         public TextFileLogger(string FileName)
         {
             _Writer = File.CreateText(FileName);
+            ((StreamWriter)_Writer).AutoFlush = true;
+
         }
 
         public override void Log(string Message)
