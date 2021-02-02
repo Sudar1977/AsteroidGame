@@ -65,10 +65,15 @@ namespace TestConsole
             //Logger log = new TextFileLogger("text.log");
             //Logger log = new ConsoleLogger();
             //Logger log = new DebugOutputLogger();
-            Logger log = new TraceLogger();
+            //Logger log = new TraceLogger();
+            CombineLogger log = new CombineLogger();
+            log.Add(new ConsoleLogger());
+            log.Add(new DebugOutputLogger());
+            log.Add(new TraceLogger());
+            log.Add(new TextFileLogger("new_log.log"));
 
-            Trace.Listeners.Add(new TextWriterTraceListener("logger.log"));
-            Trace.Listeners.Add(new XmlWriterTraceListener("logger.xml"));
+            //Trace.Listeners.Add(new TextWriterTraceListener("logger.log"));
+            //Trace.Listeners.Add(new XmlWriterTraceListener("logger.xml"));
 
             log.LogInformation("Message1");
             log.LogWarning("Info message");
