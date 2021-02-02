@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestConsole.Loggers;
+using System.Diagnostics;
 
 namespace TestConsole
 {
@@ -63,10 +64,16 @@ namespace TestConsole
             //Lesson2
             //Logger log = new TextFileLogger("text.log");
             //Logger log = new ConsoleLogger();
-            Logger log = new DebugOutputLogger();
+            //Logger log = new DebugOutputLogger();
+            Logger log = new TraceLogger();
+
+            Trace.Listeners.Add(new TextWriterTraceListener("logger.log"));
+            Trace.Listeners.Add(new XmlWriterTraceListener("logger.xml"));
+
             log.LogInformation("Message1");
             log.LogWarning("Info message");
             log.LogError("Error message");
+
 
             log.Flush();
 

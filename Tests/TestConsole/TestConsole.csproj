@@ -47,6 +47,7 @@
     <Compile Include="Loggers\DebugOutputLogger.cs" />
     <Compile Include="Loggers\Logger.cs" />
     <Compile Include="Loggers\TextFileLogger.cs" />
+    <Compile Include="Loggers\TraceLogger.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PrefixPrinter.cs" />
     <Compile Include="Printer.cs" />
