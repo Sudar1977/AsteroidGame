@@ -80,10 +80,27 @@ namespace TestConsole
             log.LogError("Error message");
 
 
+       
+
+            ComputeLongDataValue(100,log);
+
+            Console.WriteLine("Программа завршена");
+            Console.ReadLine();
             log.Flush();
 
-
-            Console.ReadLine();
         }
+
+        private static double ComputeLongDataValue(int Count, Logger Log) //1:12:39
+        {
+            var result = 0;
+            for(var i = 0;i < Count; i++)
+            {
+                result++;
+                Log.LogInformation($"Вычисление итерации {i}"); ;
+                System.Threading.Thread.Sleep(100);
+            }
+            return result;
+        }
+
     }
 }
