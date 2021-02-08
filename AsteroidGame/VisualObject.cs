@@ -7,25 +7,21 @@ using System.Threading.Tasks;
 
 namespace AsteroidGame
 {
-    class VisualObject
+    internal abstract class VisualObject
     {
         protected Point _Position;
         protected Point _Direction;
         protected Size _Size;
 
-        public VisualObject(Point Position,Point Direction, Size Size)
+        protected VisualObject(Point Position,Point Direction, Size Size)
         {
             _Position = Position;
             _Direction = Direction;
             _Size = Size;
         }
 
-        public virtual void Draw(Graphics g)
-        {
-            g.DrawEllipse(Pens.White,_Position.X,_Position.Y,_Size.Width,_Size.Height);
-            //Image.FromFile
-            //g.DrawImage
-        }
+        public abstract void Draw(Graphics g);
+
 
         public virtual void Update()
         {
@@ -35,10 +31,6 @@ namespace AsteroidGame
                 _Direction.X *= -1;
             if ((_Position.Y < 0) || (_Position.Y > Game.Height))
                 _Direction.Y *= -1;
-        }
-
- 
-
-
+        }       
     }
 }
