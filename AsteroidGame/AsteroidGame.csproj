@@ -83,6 +83,9 @@
     <Content Include="src\Ast.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="src\Tie.png" />
+    <None Include="src\Bomber.png" />
+    <None Include="src\starwars_PNG56.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

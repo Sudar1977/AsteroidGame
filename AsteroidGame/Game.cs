@@ -86,7 +86,7 @@ namespace AsteroidGame
 
             var rnd = new Random();
             const int asteroid_count = 10;
-            const int asteroid_size = 25;
+            const int asteroid_size = 50;
             const int asteroid_max_speed = 20;
             for(var i = 0; i < asteroid_count; i++)
             {
