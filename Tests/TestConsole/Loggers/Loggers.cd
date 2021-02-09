@@ -30,7 +30,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="TestConsole.TextFileLogger">
-    <Position X="7.25" Y="3.25" Width="1.5" />
+    <Position X="7.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAABCAAAAAAAAAAAgAAAAAAAAAAAAIAAA=</HashCode>
       <FileName>Loggers\TextFileLogger.cs</FileName>
