@@ -72,24 +72,33 @@ namespace TestConsole
             combine_log.Add(new TraceLogger());
             combine_log.Add(new TextFileLogger("new_log.log"));
 
-            ILogger log = combine_log;
+
 
             //Trace.Listeners.Add(new TextWriterTraceListener("logger.log"));
             //Trace.Listeners.Add(new XmlWriterTraceListener("logger.xml"));
 
-            log.LogInformation("Message1");
-            log.LogWarning("Info message");
-            log.LogError("Error message");
+            combine_log.LogInformation("Message1");
+            combine_log.LogWarning("Info message");
+            combine_log.LogError("Error message");
+
+            Student student = new Student { Name = "Иывнов" };
+            
+            ILogger log = combine_log;
 
 
-       
-
-            ComputeLongDataValue(100,log);
+            ComputeLongDataValue(100, student);
 
             Console.WriteLine("Программа завршена");
-            Console.ReadLine();
+
+
+            using (var file_logger = new TextFileLogger("another.log"))//2:12
+            {
+                file_logger.LogInformation("123");
+            }
+
             combine_log.Flush();
 
+            Console.ReadLine();
         }
 
         private static double ComputeLongDataValue(int Count, ILogger Log) //1:12:39
@@ -98,8 +107,8 @@ namespace TestConsole
             for(var i = 0;i < Count; i++)
             {
                 result++;
-                Log.LogInformation($"Вычисление итерации {i}"); ;
-                System.Threading.Thread.Sleep(100);
+                Log.Log($"Вычисление итерации {i}"); ;
+                System.Threading.Thread.Sleep(10);
             }
             return result;
         }

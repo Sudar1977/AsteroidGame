@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace TestConsole
 {
-    internal class TextFileLogger : Logger
+    internal class TextFileLogger : Logger, ILogger, IDisposable
     {
         private readonly TextWriter _Writer;
         private int _Counter;
@@ -22,6 +23,11 @@ namespace TestConsole
         public override void Flush()
         {
             _Writer.Flush();
+        }
+
+        public void Dispose()
+        {
+           _Writer.Dispose();
         }
     }
 
