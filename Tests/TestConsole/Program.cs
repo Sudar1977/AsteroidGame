@@ -66,11 +66,13 @@ namespace TestConsole
             //Logger log = new ConsoleLogger();
             //Logger log = new DebugOutputLogger();
             //Logger log = new TraceLogger();
-            CombineLogger log = new CombineLogger();
-            log.Add(new ConsoleLogger());
-            log.Add(new DebugOutputLogger());
-            log.Add(new TraceLogger());
-            log.Add(new TextFileLogger("new_log.log"));
+            CombineLogger combine_log = new CombineLogger();
+            combine_log.Add(new ConsoleLogger());
+            combine_log.Add(new DebugOutputLogger());
+            combine_log.Add(new TraceLogger());
+            combine_log.Add(new TextFileLogger("new_log.log"));
+
+            ILogger log = combine_log;
 
             //Trace.Listeners.Add(new TextWriterTraceListener("logger.log"));
             //Trace.Listeners.Add(new XmlWriterTraceListener("logger.xml"));
@@ -86,11 +88,11 @@ namespace TestConsole
 
             Console.WriteLine("Программа завршена");
             Console.ReadLine();
-            log.Flush();
+            combine_log.Flush();
 
         }
 
-        private static double ComputeLongDataValue(int Count, Logger Log) //1:12:39
+        private static double ComputeLongDataValue(int Count, ILogger Log) //1:12:39
         {
             var result = 0;
             for(var i = 0;i < Count; i++)

@@ -2,7 +2,7 @@
 
 namespace TestConsole
 {
-    internal abstract class Logger
+    internal abstract class Logger : ILogger //1:59:17
     {
         public static Logger CreateFileLogger(string FileName)
         {

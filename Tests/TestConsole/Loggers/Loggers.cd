@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TestConsole.Logger">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgAAAAAAAAAAAAAAAAAAAAAAIAgABAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Loggers\Logger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TestConsole.Loggers.CombineLogger">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAIAAA=</HashCode>
+      <FileName>Loggers\CombineLogger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestConsole.Loggers.ConsoleLogger">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Loggers\ConsoleLogger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestConsole.Loggers.DebugOutputLogger">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Loggers\DebugOutputLogger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestConsole.TextFileLogger">
+    <Position X="7.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABCAAAAAAAAAAAgAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Loggers\TextFileLogger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestConsole.Loggers.TraceLogger">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Loggers\TraceLogger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestConsole.Student">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAEAAAAAAAAAAAAAAQABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
