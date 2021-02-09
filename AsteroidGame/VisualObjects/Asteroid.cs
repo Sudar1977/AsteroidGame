@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace AsteroidGame.VisualObjects
 {
 
-    internal class Asteroid : ImageObject //1:27:08
+    internal class Asteroid : ImageObject, ICollision //1:27:08
     {
 
         //private static readonly Image __Image = Image.FromFile("src\\Ast.png"); 
@@ -18,5 +18,9 @@ namespace AsteroidGame.VisualObjects
              : base(Position, Direction, new Size(ImageSize,ImageSize), __Image)
         {
         }
+
+        public Rectangle Rect =>  new Rectangle(_Position,_Size);
+
+        public bool CheckCollision(ICollision obj) => Rect.IntersectsWith(obj.Rect);
     }
 }

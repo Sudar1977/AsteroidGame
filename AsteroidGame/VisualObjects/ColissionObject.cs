@@ -14,7 +14,7 @@ namespace AsteroidGame.VisualObjects
         {
         }
 
-        public Rectangle Rect => new Rectangle(_Direction,_Size);
+        public Rectangle Rect => new Rectangle(_Position,_Size);
         public bool CheckCollision(ICollision obj) => Rect.IntersectsWith(obj.Rect);
 
         public override void Draw(Graphics g)
