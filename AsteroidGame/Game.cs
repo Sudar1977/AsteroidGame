@@ -13,7 +13,15 @@ namespace AsteroidGame
     internal static class Game
     {
         /// <summary> Интервал времени таймера кадра игры    </summary>
-        private const int __TimerInterval = 100;
+        private const int __TimerInterval = 20;
+
+        const int asteroid_count = 10;
+        const int asteroid_size = 50;
+        const int asteroid_max_speed = 20;
+
+        const int enemy_count = 10;
+        const int enemy_size = 50;
+        const int enemy_max_speed = 20;
 
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
@@ -65,16 +73,7 @@ namespace AsteroidGame
         public static void Load()
         {
             List<VisualObject> game_objects = new List<VisualObject>();
-            //__GameObjects = new VisualObject[30];
 
-            //for (var i = 0; i < 30; i++) //1:26:47
-            //{
-            //    game_objects.Add( 
-            //        new VisualObject(
-            //            new Point(600, i * 20), 
-            //            new Point(15 - i, 20 - i), 
-            //            new Size(20, 20)));
-            //}
             for (var i = 0; i < 10; i++)
             {
                 game_objects.Add(
@@ -85,9 +84,7 @@ namespace AsteroidGame
             }
 
             var rnd = new Random();
-            const int asteroid_count = 10;
-            const int asteroid_size = 50;
-            const int asteroid_max_speed = 20;
+
             for(var i = 0; i < asteroid_count; i++)
             {
                 game_objects.Add(
@@ -95,6 +92,15 @@ namespace AsteroidGame
                         new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
                         new Point(-rnd.Next(0, asteroid_max_speed), 0),
                         asteroid_size));
+            }
+
+            for (var i = 0; i < enemy_count; i++)
+            {
+                game_objects.Add(
+                    new EnemySheep(
+                        new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                        new Point(-rnd.Next(0, enemy_max_speed), 0),
+                        enemy_size));
             }
 
             game_objects.Add(new Asteroid(new Point(Width / 2, 200), new Point(-asteroid_max_speed, 0), asteroid_size));
@@ -127,14 +133,11 @@ namespace AsteroidGame
                         {
                             __Bullet = null;
                             __GameObjects[i] = null;
-                            System.Media.SystemSounds.Beep.Play();
+                            Console.Beep(250, 100);
                         }
                     }
                 }
             }
-
         }
-
-
     }
 }

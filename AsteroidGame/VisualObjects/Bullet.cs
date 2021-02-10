@@ -22,7 +22,7 @@ namespace AsteroidGame.VisualObjects
         public override void Draw(Graphics g)
         {
             var rect = new Rectangle(_Position,_Size);
-            g.FillEllipse(Brushes.Red,rect);
+            g.FillEllipse(Brushes.Cyan,rect);
             g.DrawEllipse(Pens.White, rect);
         }
 

@@ -47,12 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICollision.cs" />
+    <Compile Include="music.cs" />
     <Compile Include="VisualObjects\Asteroid.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualObjects\Bullet.cs" />
     <Compile Include="VisualObjects\ColissionObject.cs" />
+    <Compile Include="VisualObjects\EnemySheep.cs" />
     <Compile Include="VisualObjects\ImageObject.cs" />
     <Compile Include="VisualObjects\SpaceSheep.cs" />
     <Compile Include="VisualObjects\Star.cs" />
