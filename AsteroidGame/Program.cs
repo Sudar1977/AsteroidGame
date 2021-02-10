@@ -39,7 +39,7 @@ namespace AsteroidGame
             Game.Initialize(game_form);
             Game.Load();
             Game.Draw();
-            //music.StarWars();
+            music.StarWars();
             Application.Run(game_form);
         }
     }
