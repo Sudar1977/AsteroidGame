@@ -30,6 +30,8 @@ namespace AsteroidGame
         private static Bullet __Bullet;
         private static SpaceSheep __SpaceSheep;
 
+        private static Random rnd;
+
 
         /// <summary> Высота игрового поля </summary>
         public static int Width { get; private set; }
@@ -48,6 +50,8 @@ namespace AsteroidGame
             Timer timer = new Timer { Interval = __TimerInterval };
             timer.Tick += OnTimerTick;
             timer.Start();
+
+            rnd = new Random();
         }
 
         private static void OnTimerTick(object Sender, EventArgs e)
@@ -83,7 +87,7 @@ namespace AsteroidGame
                         10));
             }
 
-            var rnd = new Random();
+            //var rnd = new Random();
 
             for(var i = 0; i < asteroid_count; i++)
             {
@@ -132,7 +136,16 @@ namespace AsteroidGame
                         if (__Bullet.CheckCollision(collision_object))
                         {
                             __Bullet = null;
-                            __GameObjects[i] = null;
+                            if (collision_object is Asteroid)
+                                __GameObjects[i] = new Asteroid(
+                                                    new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                                                    new Point(-rnd.Next(0, asteroid_max_speed), 0),
+                                                    asteroid_size);
+                            if (collision_object is EnemySheep)
+                                __GameObjects[i] = new EnemySheep(
+                                                     new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                                                     new Point(-rnd.Next(0, enemy_max_speed), 0),
+                                                     enemy_size);
                             Console.Beep(250, 100);
                         }
                     }

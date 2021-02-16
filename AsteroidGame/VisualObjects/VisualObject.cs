@@ -23,14 +23,14 @@ namespace AsteroidGame.VisualObjects
         public abstract void Draw(Graphics g);
 
 
-        public virtual void Update()
-        {
-            _Position.X += _Direction.X;
-            _Position.Y += _Direction.Y;
-            if ((_Position.X < 0)||(_Position.X > Game.Width))
-                _Direction.X *= -1;
-            if ((_Position.Y < 0) || (_Position.Y > Game.Height))
-                _Direction.Y *= -1;
-        }       
+        public abstract void Update();
+        //{
+        //    _Position.X += _Direction.X;
+        //    _Position.Y += _Direction.Y;
+        //    if ((_Position.X < 0)||(_Position.X > Game.Width))
+        //        _Direction.X *= -1;
+        //    if ((_Position.Y < 0) || (_Position.Y > Game.Height))
+        //        _Direction.Y *= -1;
+        //}       
     }
 }

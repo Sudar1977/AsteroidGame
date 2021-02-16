@@ -21,5 +21,15 @@ namespace AsteroidGame.VisualObjects
         {
             throw new NotImplementedException();
         }
+
+        public override void Update()
+        {
+            _Position.X += _Direction.X;
+            _Position.Y += _Direction.Y;
+            if ((_Position.X < 0) || (_Position.X > Game.Width))
+                _Direction.X *= -1;
+            if ((_Position.Y < 0) || (_Position.Y > Game.Height))
+                _Direction.Y *= -1;
+        }
     }
 }
