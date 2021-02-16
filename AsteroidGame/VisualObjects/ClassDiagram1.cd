@@ -3,7 +3,7 @@
   <Class Name="AsteroidGame.VisualObjects.Asteroid">
     <Position X="4.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAACAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAACAAAACBAAAAAAAAAAA=</HashCode>
       <FileName>VisualObjects\Asteroid.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -18,16 +18,17 @@
   <Class Name="AsteroidGame.VisualObjects.ImageObject">
     <Position X="4.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>VisualObjects\ImageObject.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AsteroidGame.VisualObjects.SpaceSheep">
     <Position X="10.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAUAAAEAAAAAQgAAAAAEAAAAACAAAACAQAAAAAAAAAA=</HashCode>
       <FileName>VisualObjects\SpaceSheep.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="AsteroidGame.VisualObjects.Star">
     <Position X="8.75" Y="1.75" Width="1.5" />
@@ -46,7 +47,7 @@
   <Class Name="AsteroidGame.VisualObjects.ColissionObject">
     <Position X="6.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAACAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAACAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>VisualObjects\ColissionObject.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

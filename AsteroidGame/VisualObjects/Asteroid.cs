@@ -11,6 +11,7 @@ namespace AsteroidGame.VisualObjects
     internal class Asteroid : ImageObject, ICollision 
     {
 
+        public int Power { get; set; } = 3;
         //private static readonly Image __Image = Image.FromFile("src\\Ast.png"); 
         private static readonly Image __Image = Properties.Resources.Ast; 
         //private static readonly Image __Image = Properties.Resources.DeathStar; 
