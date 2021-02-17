@@ -27,7 +27,8 @@ namespace AsteroidGame
         private static BufferedGraphics __Buffer;
 
         private static VisualObject[] __GameObjects;
-        private static Bullet      __Bullet;
+        //private static Bullet      __Bullet;
+        private static List <Bullet> __Bullets = new List<Bullet>();
         private static SpaceSheep __SpaceSheep;
 
         private static Random rnd;
@@ -82,8 +83,9 @@ namespace AsteroidGame
             switch (e.KeyCode)
             {
                 case Keys.ControlKey:
-                case Keys.Space:
-                    __Bullet = new Bullet(__SpaceSheep.Rect.Y);
+                case Keys.Space: 
+                    //__Bullet = new Bullet(__SpaceSheep.Rect.Y);
+                    __Bullets.Add(new Bullet(__SpaceSheep.Rect.Y));
                     break;
 
                 case Keys.Up:
@@ -114,7 +116,8 @@ namespace AsteroidGame
                 game_object?.Draw(g);
 
             __SpaceSheep.Draw(g);
-            __Bullet?.Draw(g);
+            //__Bullet?.Draw(g);
+            __Bullets.ForEach(bullet => bullet.Draw(g));
             if (!__Timer.Enabled)
                 return;
             __Buffer.Render();
@@ -156,7 +159,7 @@ namespace AsteroidGame
 
             game_objects.Add(new Asteroid(new Point(Width / 2, 200), new Point(-asteroid_max_speed, 0), asteroid_size));
 
-            __Bullet = new Bullet(200);
+            //__Bullet = new Bullet(200);
              
             __GameObjects = game_objects.ToArray();//1:23:23 
 
@@ -178,7 +181,11 @@ namespace AsteroidGame
         {
             foreach (var game_object in __GameObjects)
                 game_object?.Update();
-            __Bullet?.Update();
+            //__Bullet?.Update();
+            __Bullets.ForEach(bullet => bullet.Update());
+
+            foreach (var bullet_to_remove in __Bullets.Where(b => b.Rect.Left > Width).ToArray())
+                __Bullets.Remove(bullet_to_remove);
 
             for(var i = 0; i < __GameObjects.Length; i++)
             {
@@ -187,13 +194,15 @@ namespace AsteroidGame
                 {
                     var collision_object = (ICollision)obj;
                     __SpaceSheep.CheckCollision(collision_object);
-                    if (__Bullet != null)
+                    foreach (var bullet in __Bullets.ToArray())
                     {
-                        if (__Bullet.CheckCollision(collision_object))
+
+                        if (bullet.CheckCollision(collision_object))
                         {
-                            __Bullet = null;
+                            __Bullets.Remove(bullet);
+                            //bullet = null;
                             if (collision_object is Asteroid)
-                                __GameObjects[i] = new Asteroid(
+                                __GameObjects[i] = new Asteroid( 
                                                     new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
                                                     new Point(-rnd.Next(0, asteroid_max_speed), 0),
                                                     asteroid_size);
