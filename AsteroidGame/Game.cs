@@ -27,10 +27,13 @@ namespace AsteroidGame
         private static BufferedGraphics __Buffer;
 
         private static VisualObject[] __GameObjects;
-        private static Bullet __Bullet;
+        private static Bullet      __Bullet;
         private static SpaceSheep __SpaceSheep;
 
         private static Random rnd;
+
+        private static Timer  __Timer;
+        private static Button __ButtonNewGame;
 
 
         /// <summary> Высота игрового поля </summary>
@@ -47,14 +50,56 @@ namespace AsteroidGame
             Graphics g = form.CreateGraphics();
             __Buffer = __Context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
-            Timer timer = new Timer { Interval = __TimerInterval };
-            timer.Tick += OnTimerTick;
-            timer.Start();
+            __Timer = new Timer { Interval = __TimerInterval };
+            __Timer.Tick += OnTimerTick;
+            __Timer.Start();
 
             rnd = new Random();
+
+            form.KeyDown += OnFormKeyDown;
+
+            __ButtonNewGame = new Button();
+            __ButtonNewGame.Width = 200;
+            __ButtonNewGame.Height = 30;
+            __ButtonNewGame.Text = "New GAME!!!";
+            __ButtonNewGame.Left = 20;
+            __ButtonNewGame.Top = 30;
+            __ButtonNewGame.Click += OnTestButtonClicked;
+            __ButtonNewGame.Visible = false;
+            form.Controls.Add(__ButtonNewGame);
+            //test_button
         }
 
-        private static void OnTimerTick(object Sender, EventArgs e)
+        private static void OnTestButtonClicked(object Sender, EventArgs e)
+        {
+            //MessageBox.Show("Just do it!!!!");
+            __ButtonNewGame.Visible = false;
+            //Music.MissionImpossible();
+            __Timer.Start();
+        }
+        private static void OnFormKeyDown(object Sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.ControlKey:
+                case Keys.Space:
+                    __Bullet = new Bullet(__SpaceSheep.Rect.Y);
+                    break;
+
+                case Keys.Up:
+                case Keys.W:
+                    __SpaceSheep.MoveUp();
+                    break;
+
+                case Keys.Down:
+                case Keys.S:
+                    __SpaceSheep.MoveDown();
+                    break;
+            }
+        }
+
+
+            private static void OnTimerTick(object Sender, EventArgs e)
         {
             Update();
             Draw();
@@ -68,8 +113,10 @@ namespace AsteroidGame
             foreach (var game_object in __GameObjects)
                 game_object?.Draw(g);
 
+            __SpaceSheep.Draw(g);
             __Bullet?.Draw(g);
-
+            if (!__Timer.Enabled)
+                return;
             __Buffer.Render();
 
         }
@@ -112,6 +159,19 @@ namespace AsteroidGame
             __Bullet = new Bullet(200);
              
             __GameObjects = game_objects.ToArray();//1:23:23 
+
+            __SpaceSheep = new SpaceSheep(new Point(10,400),new Point(5,5),new Size(10,10));
+            __SpaceSheep.Destoyed += OnSheepDestroyed;
+        }
+
+        private static void OnSheepDestroyed(object sender,EventArgs e)
+        {
+            __Timer.Stop();
+            var g = __Buffer.Graphics;
+            __ButtonNewGame.Visible = true;
+            g.Clear(Color.DarkBlue);
+            g.DrawString("Game over!!!", new Font(FontFamily.GenericSerif,60,FontStyle.Bold),Brushes.Red,200,100);
+            __Buffer.Render();
         }
 
         public static void Update()
@@ -119,11 +179,6 @@ namespace AsteroidGame
             foreach (var game_object in __GameObjects)
                 game_object?.Update();
             __Bullet?.Update();
-            if(__Bullet is null || __Bullet.Rect.Left > Width)
-            {
-                var rnd = new Random();
-                __Bullet = new Bullet(rnd.Next(0, Height));
-            }
 
             for(var i = 0; i < __GameObjects.Length; i++)
             {
@@ -131,6 +186,7 @@ namespace AsteroidGame
                 if(obj is ICollision)
                 {
                     var collision_object = (ICollision)obj;
+                    __SpaceSheep.CheckCollision(collision_object);
                     if (__Bullet != null)
                     {
                         if (__Bullet.CheckCollision(collision_object))
