@@ -29,12 +29,14 @@ namespace AsteroidGame
         private static VisualObject[] __GameObjects;
         //private static Bullet      __Bullet;
         private static List <Bullet> __Bullets = new List<Bullet>();
-        private static SpaceSheep __SpaceSheep;
+        private static SpaceShip __SpaceShip;
 
         private static Random rnd;
 
         private static Timer  __Timer;
         private static Button __ButtonNewGame;
+
+        private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.DeathStar);
 
 
         /// <summary> Высота игрового поля </summary>
@@ -58,6 +60,7 @@ namespace AsteroidGame
             rnd = new Random();
 
             form.KeyDown += OnFormKeyDown;
+            //form.KeyPress += OnFormKeyPress;
 
             __ButtonNewGame = new Button();
             __ButtonNewGame.Width = 200;
@@ -78,6 +81,7 @@ namespace AsteroidGame
             //Music.MissionImpossible();
             __Timer.Start();
         }
+
         private static void OnFormKeyDown(object Sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -85,23 +89,35 @@ namespace AsteroidGame
                 case Keys.ControlKey:
                 case Keys.Space: 
                     //__Bullet = new Bullet(__SpaceSheep.Rect.Y);
-                    __Bullets.Add(new Bullet(__SpaceSheep.Rect.Y));
+                    __Bullets.Add(new Bullet(__SpaceShip.Rect.X, __SpaceShip.Rect.Y));
                     break;
 
                 case Keys.Up:
                 case Keys.W:
-                    __SpaceSheep.MoveUp();
+                    __SpaceShip.MoveUp();
                     break;
 
                 case Keys.Down:
                 case Keys.S:
-                    __SpaceSheep.MoveDown();
+                    __SpaceShip.MoveDown();
                     break;
+
+                case Keys.Right:
+                case Keys.D:
+                    __SpaceShip.MoveForward();
+                    break;
+
+                case Keys.Left:
+                case Keys.A:
+                    __SpaceShip.MoveBack();
+                    break;
+
+
             }
         }
 
 
-            private static void OnTimerTick(object Sender, EventArgs e)
+        private static void OnTimerTick(object Sender, EventArgs e)
         {
             Update();
             Draw();
@@ -110,12 +126,14 @@ namespace AsteroidGame
         {
             Graphics g = __Buffer.Graphics;
             g.Clear(Color.Black);
+            //g.FillRectangle(_Texture1, new RectangleF(0, 0, Width, Height));
+            g.FillRectangle(_Texture1, new RectangleF(0, 0, _Texture1.Image.Width, _Texture1.Image.Height));
             //g.DrawRectangle(Pens.White, new Rectangle(50, 50, 200, 200));
             //g.FillEllipse(Brushes.Red, new Rectangle(100, 50, 70, 120));
             foreach (var game_object in __GameObjects)
                 game_object?.Draw(g);
 
-            __SpaceSheep.Draw(g);
+            __SpaceShip.Draw(g);
             //__Bullet?.Draw(g);
             __Bullets.ForEach(bullet => bullet.Draw(g));
             if (!__Timer.Enabled)
@@ -163,8 +181,13 @@ namespace AsteroidGame
              
             __GameObjects = game_objects.ToArray();//1:23:23 
 
-            __SpaceSheep = new SpaceSheep(new Point(10,400),new Point(5,5),new Size(10,10));
-            __SpaceSheep.Destoyed += OnSheepDestroyed;
+            //__SpaceSheep = new SpaceSheep(new Point(10,400),new Point(5,5),new Size(10,10));
+            __SpaceShip = new SpaceShip(
+                new Point(20, 400),
+                new Point(10, 10),
+                50);
+
+            __SpaceShip.Destoyed += OnSheepDestroyed;
         }
 
         private static void OnSheepDestroyed(object sender,EventArgs e)
@@ -193,7 +216,7 @@ namespace AsteroidGame
                 if(obj is ICollision)
                 {
                     var collision_object = (ICollision)obj;
-                    __SpaceSheep.CheckCollision(collision_object);
+                    __SpaceShip.CheckCollision(collision_object);
                     foreach (var bullet in __Bullets.ToArray())
                     {
 

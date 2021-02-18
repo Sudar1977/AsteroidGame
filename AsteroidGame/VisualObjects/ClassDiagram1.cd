@@ -22,11 +22,21 @@
       <FileName>VisualObjects\ImageObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AsteroidGame.VisualObjects.SpaceSheep">
-    <Position X="10.75" Y="1.75" Width="1.5" />
+  <Class Name="AsteroidGame.VisualObjects.SpaceShip">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <InheritanceLine Type="AsteroidGame.VisualObjects.ImageObject" FixedToPoint="true">
+      <Path>
+        <Point X="5.906" Y="1.75" />
+        <Point X="5.906" Y="1.375" />
+        <Point X="7.417" Y="1.375" Type="JumpStart" />
+        <Point X="7.583" Y="1.375" Type="JumpEnd" />
+        <Point X="11.812" Y="1.375" />
+        <Point X="11.812" Y="1.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAUAAAEAAAAAQgAAAAAEAAAAACAAAACAQAAAAAAAAAA=</HashCode>
-      <FileName>VisualObjects\SpaceSheep.cs</FileName>
+      <HashCode>AAUAIAEAAAAAQgAAAAAEAAAAAGEAAACAQAAAAgAAAAA=</HashCode>
+      <FileName>VisualObjects\SpaceShip.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>

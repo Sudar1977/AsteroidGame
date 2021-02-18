@@ -28,7 +28,7 @@ namespace AsteroidGame
             //const int game_form_width = 1280;
             //const int game_form_height = 1024;
 
-#if false
+#if true
             game_form.Width = Screen.PrimaryScreen.WorkingArea.Width;
             game_form.Height = Screen.PrimaryScreen.WorkingArea.Height;
 #else
