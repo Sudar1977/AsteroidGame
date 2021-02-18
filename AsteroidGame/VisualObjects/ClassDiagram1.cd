@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AsteroidGame.VisualObjects.Asteroid">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAACAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>VisualObjects\Asteroid.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AsteroidGame.VisualObjects.Bullet">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAAgwAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VisualObjects\Bullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.VisualObjects.ImageObject">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>VisualObjects\ImageObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.VisualObjects.SpaceSheep">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VisualObjects\SpaceSheep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.VisualObjects.Star">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VisualObjects\Star.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.VisualObjects.VisualObject" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAIgAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VisualObjects\VisualObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.VisualObjects.ColissionObject">
+    <Position X="6.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAACAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>VisualObjects\ColissionObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="AsteroidGame.ICollision">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>ICollision.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

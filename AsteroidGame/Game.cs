@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AsteroidGame.VisualObjects;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -8,15 +9,36 @@ using System.Windows.Forms;
 
 namespace AsteroidGame
 {
+    /// <summary> Класс игровой логики </summary>
     internal static class Game
     {
+        /// <summary> Интервал времени таймера кадра игры    </summary>
+        private const int __TimerInterval = 20;
+
+        const int asteroid_count = 10;
+        const int asteroid_size = 50;
+        const int asteroid_max_speed = 20;
+
+        const int enemy_count = 10;
+        const int enemy_size = 50;
+        const int enemy_max_speed = 20;
+
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
 
         private static VisualObject[] __GameObjects;
+        private static Bullet __Bullet;
+        private static SpaceSheep __SpaceSheep;
 
-        public static int Width { get; set; }
-        public static int Height { get; set; }
+        private static Random rnd;
+
+
+        /// <summary> Высота игрового поля </summary>
+        public static int Width { get; private set; }
+        /// <summary> Ширина игрового поля </summary>
+        public static int Height { get; private set; }
+        /// <summary> Инициализация игровой логики </summary>
+        /// <param name="form"> Игровая форма </param>
         public static void Initialize(Form form)
         {
             Width = form.Width;
@@ -25,9 +47,11 @@ namespace AsteroidGame
             Graphics g = form.CreateGraphics();
             __Buffer = __Context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
-            Timer timer = new Timer { Interval = 100 };
+            Timer timer = new Timer { Interval = __TimerInterval };
             timer.Tick += OnTimerTick;
             timer.Start();
+
+            rnd = new Random();
         }
 
         private static void OnTimerTick(object Sender, EventArgs e)
@@ -42,7 +66,9 @@ namespace AsteroidGame
             //g.DrawRectangle(Pens.White, new Rectangle(50, 50, 200, 200));
             //g.FillEllipse(Brushes.Red, new Rectangle(100, 50, 70, 120));
             foreach (var game_object in __GameObjects)
-                game_object.Draw(g);
+                game_object?.Draw(g);
+
+            __Bullet?.Draw(g);
 
             __Buffer.Render();
 
@@ -50,26 +76,81 @@ namespace AsteroidGame
 
         public static void Load()
         {
-            __GameObjects = new VisualObject[30];
-            for (var i = 0; i < __GameObjects.Length / 2; i++)
+            List<VisualObject> game_objects = new List<VisualObject>();
+
+            for (var i = 0; i < 10; i++)
             {
-                __GameObjects[i] = new VisualObject(new Point(600, i * 20), new Point(15 - i, 20 - i), new Size(20, 20));
+                game_objects.Add(
+                    new Star(
+                        new Point(600, (int)(i / 2.0 * 20)),
+                        new Point(-i, 0),
+                        10));
             }
-            for (var i = __GameObjects.Length / 2; i < __GameObjects.Length; i++)
+
+            //var rnd = new Random();
+
+            for(var i = 0; i < asteroid_count; i++)
             {
-                __GameObjects[i] = new Star(
-                    new Point(600, (int)(i / 2.0 * 20)),
-                    new Point(-i, 0),
-                    10);
+                game_objects.Add(
+                    new Asteroid(
+                        new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                        new Point(-rnd.Next(0, asteroid_max_speed), 0),
+                        asteroid_size));
             }
+
+            for (var i = 0; i < enemy_count; i++)
+            {
+                game_objects.Add(
+                    new EnemySheep(
+                        new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                        new Point(-rnd.Next(0, enemy_max_speed), 0),
+                        enemy_size));
+            }
+
+            game_objects.Add(new Asteroid(new Point(Width / 2, 200), new Point(-asteroid_max_speed, 0), asteroid_size));
+
+            __Bullet = new Bullet(200);
+             
+            __GameObjects = game_objects.ToArray();//1:23:23 
         }
 
         public static void Update()
         {
             foreach (var game_object in __GameObjects)
-                game_object.Update();
+                game_object?.Update();
+            __Bullet?.Update();
+            if(__Bullet is null || __Bullet.Rect.Left > Width)
+            {
+                var rnd = new Random();
+                __Bullet = new Bullet(rnd.Next(0, Height));
+            }
+
+            for(var i = 0; i < __GameObjects.Length; i++)
+            {
+                var obj = __GameObjects[i];
+                if(obj is ICollision)
+                {
+                    var collision_object = (ICollision)obj;
+                    if (__Bullet != null)
+                    {
+                        if (__Bullet.CheckCollision(collision_object))
+                        {
+                            __Bullet = null;
+                            if (collision_object is Asteroid)
+                                __GameObjects[i] = new Asteroid(
+                                                    new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                                                    new Point(-rnd.Next(0, asteroid_max_speed), 0),
+                                                    asteroid_size);
+                            if (collision_object is EnemySheep)
+                                __GameObjects[i] = new EnemySheep(
+                                                     new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                                                     new Point(-rnd.Next(0, enemy_max_speed), 0),
+                                                     enemy_size);
+                            Console.Beep(250, 100);
+                        }
+                    }
+                }
+            }
         }
-
-
     }
 }
