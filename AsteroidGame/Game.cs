@@ -15,6 +15,9 @@ namespace AsteroidGame
         /// <summary> Интервал времени таймера кадра игры    </summary>
         private const int __TimerInterval = 20;
 
+        /// <summary> Task 4 Lesson 3 Добавить подсчет очков за сбитые астероиды./// </summary>
+        private static int _Counter = 0;
+
         const int asteroid_count = 10;
         const int asteroid_size = 50;
         const int asteroid_max_speed = 20;
@@ -89,7 +92,7 @@ namespace AsteroidGame
                 case Keys.ControlKey:
                 case Keys.Space: 
                       __Bullets.Add(new Bullet(__SpaceShip.Rect.X+__SpaceShip.Rect.Width, __SpaceShip.Rect.Y+__SpaceShip.Rect.Height/2));
-                    Console.Beep(300, 50);
+                    //Console.Beep(300, 50);
                     break;
 
                 case Keys.Up:
@@ -128,6 +131,7 @@ namespace AsteroidGame
             g.Clear(Color.Black);
             //g.FillRectangle(_Texture1, new RectangleF(0, 0, Width, Height));
             g.FillRectangle(_Texture1, new RectangleF(0, 0, _Texture1.Image.Width, _Texture1.Image.Height));
+            g.DrawString($"{_Counter}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 10);
             //g.DrawRectangle(Pens.White, new Rectangle(50, 50, 200, 200));
             //g.FillEllipse(Brushes.Red, new Rectangle(100, 50, 70, 120));
             foreach (var game_object in __GameObjects)
@@ -222,6 +226,7 @@ namespace AsteroidGame
 
                         if (bullet.CheckCollision(collision_object))
                         {
+                            _Counter++;
                             __Bullets.Remove(bullet);
                             //bullet = null;
                             if (collision_object is Asteroid)

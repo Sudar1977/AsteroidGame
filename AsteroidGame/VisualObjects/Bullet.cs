@@ -11,7 +11,7 @@ namespace AsteroidGame.VisualObjects
     {
         private const int __BulletSizeX = 20;
         private const int __BulletSizeY = 5;
-        private const int __BulletSpeed = 3;
+        private const int __BulletSpeed = 20;
 
 
         public Bullet(int X,int Y) 
