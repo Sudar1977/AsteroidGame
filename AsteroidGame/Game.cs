@@ -65,7 +65,7 @@ namespace AsteroidGame
             __Rnd = new Random();
 
             form.KeyDown += OnFormKeyDown;
-            form.MouseMove += new MouseEventHandler(mouseEvent);
+            form.MouseMove += new MouseEventHandler(mouseEvent);//https://www.youtube.com/watch?v=onMsYF9-HCg&list=PLqzmfPe9NPAkWg17LqEYCqXydTwShErLf
             form.MouseClick += new MouseEventHandler(mouseClick);
             //form.KeyPress += OnFormKeyPress;
 
