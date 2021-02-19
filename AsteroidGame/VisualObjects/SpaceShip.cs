@@ -78,7 +78,12 @@ namespace AsteroidGame.VisualObjects
             if (_Position.X - _Size.Width < Game.Width)
                 _Position.X += _Direction.X;
         }
-
+        
+        public void SetPostion(int X,int Y)
+        {
+            _Position.X = X;
+            _Position.Y = Y;
+        }
 
     }
 }

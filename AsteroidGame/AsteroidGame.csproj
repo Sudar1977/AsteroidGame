@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsteroidFactory.cs" />
     <Compile Include="ICollision.cs" />
+    <Compile Include="IEnemyFactory.cs" />
     <Compile Include="Music.cs" />
     <Compile Include="VisualObjects\Asteroid.cs" />
     <Compile Include="Game.cs" />

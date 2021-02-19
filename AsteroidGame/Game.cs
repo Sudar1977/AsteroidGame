@@ -19,8 +19,8 @@ namespace AsteroidGame
         private static int _Counter = 0;
 
         const int asteroid_count = 10;
-        const int asteroid_size = 50;
-        const int asteroid_max_speed = 20;
+        public const int asteroid_size = 50;
+        public const int asteroid_max_speed = 20;
 
         const int enemy_count = 10;
         const int enemy_size = 50;
@@ -34,10 +34,12 @@ namespace AsteroidGame
         private static List <Bullet> __Bullets = new List<Bullet>();
         private static SpaceShip __SpaceShip;
 
-        private static Random rnd;
+        private static  Random __Rnd;
 
         private static Timer  __Timer;
         private static Button __ButtonNewGame;
+
+        private static IEnemyFactory __Factory = new AsteroidFactory();
 
         private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.DeathStar);
 
@@ -60,9 +62,10 @@ namespace AsteroidGame
             __Timer.Tick += OnTimerTick;
             __Timer.Start();
 
-            rnd = new Random();
+            __Rnd = new Random();
 
             form.KeyDown += OnFormKeyDown;
+            form.MouseMove += new MouseEventHandler(mouseEvent);
             //form.KeyPress += OnFormKeyPress;
 
             __ButtonNewGame = new Button();
@@ -75,6 +78,11 @@ namespace AsteroidGame
             __ButtonNewGame.Visible = false;
             form.Controls.Add(__ButtonNewGame);
             //test_button
+        }
+
+        private static void mouseEvent(object sender, MouseEventArgs e)
+        {
+            __SpaceShip.SetPostion(Cursor.Position.X,Cursor.Position.Y);
         }
 
         private static void OnTestButtonClicked(object Sender, EventArgs e)
@@ -114,8 +122,6 @@ namespace AsteroidGame
                 case Keys.A:
                     __SpaceShip.MoveBack();
                     break;
-
-
             }
         }
 
@@ -129,16 +135,12 @@ namespace AsteroidGame
         {
             Graphics g = __Buffer.Graphics;
             g.Clear(Color.Black);
-            //g.FillRectangle(_Texture1, new RectangleF(0, 0, Width, Height));
             g.FillRectangle(_Texture1, new RectangleF(0, 0, _Texture1.Image.Width, _Texture1.Image.Height));
             g.DrawString($"{_Counter}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 10);
-            //g.DrawRectangle(Pens.White, new Rectangle(50, 50, 200, 200));
-            //g.FillEllipse(Brushes.Red, new Rectangle(100, 50, 70, 120));
             foreach (var game_object in __GameObjects)
                 game_object?.Draw(g);
 
             __SpaceShip.Draw(g);
-            //__Bullet?.Draw(g);
             __Bullets.ForEach(bullet => bullet.Draw(g));
             if (!__Timer.Enabled)
                 return;
@@ -159,33 +161,28 @@ namespace AsteroidGame
                         10));
             }
 
-            //var rnd = new Random();
-
             for(var i = 0; i < asteroid_count; i++)
             {
-                game_objects.Add(
-                    new Asteroid(
-                        new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
-                        new Point(-rnd.Next(0, asteroid_max_speed), 0),
-                        asteroid_size));
+                game_objects.Add(__Factory.Create(__Rnd));
+                    //new Asteroid(
+                    //    new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                    //    new Point(-rnd.Next(0, asteroid_max_speed), 0),
+                    //    asteroid_size));
             }
 
             for (var i = 0; i < enemy_count; i++)
             {
                 game_objects.Add(
                     new EnemySheep(
-                        new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
-                        new Point(-rnd.Next(0, enemy_max_speed), 0),
+                        new Point(__Rnd.Next(0, Width), __Rnd.Next(0, Height)),
+                        new Point(-__Rnd.Next(0, enemy_max_speed), 0),
                         enemy_size));
             }
 
             game_objects.Add(new Asteroid(new Point(Width / 2, 200), new Point(-asteroid_max_speed, 0), asteroid_size));
-
-            //__Bullet = new Bullet(200);
-             
+         
             __GameObjects = game_objects.ToArray();//1:23:23 
 
-            //__SpaceSheep = new SpaceSheep(new Point(10,400),new Point(5,5),new Size(10,10));
             __SpaceShip = new SpaceShip(
                 new Point(20, 400),
                 new Point(10, 10),
@@ -230,14 +227,14 @@ namespace AsteroidGame
                             __Bullets.Remove(bullet);
                             //bullet = null;
                             if (collision_object is Asteroid)
-                                __GameObjects[i] = new Asteroid( 
+                                __GameObjects[i] = __Factory.Create(__Rnd);/* new Asteroid( 
                                                     new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
                                                     new Point(-rnd.Next(0, asteroid_max_speed), 0),
-                                                    asteroid_size);
+                                                    asteroid_size);*/
                             if (collision_object is EnemySheep)
                                 __GameObjects[i] = new EnemySheep(
-                                                     new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
-                                                     new Point(-rnd.Next(0, enemy_max_speed), 0),
+                                                     new Point(__Rnd.Next(0, Width), __Rnd.Next(0, Height)),
+                                                     new Point(-__Rnd.Next(0, enemy_max_speed), 0),
                                                      enemy_size);
                             Console.Beep(250, 100);
                         }
