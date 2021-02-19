@@ -66,6 +66,7 @@ namespace AsteroidGame
 
             form.KeyDown += OnFormKeyDown;
             form.MouseMove += new MouseEventHandler(mouseEvent);
+            form.MouseClick += new MouseEventHandler(mouseClick);
             //form.KeyPress += OnFormKeyPress;
 
             __ButtonNewGame = new Button();
@@ -78,6 +79,11 @@ namespace AsteroidGame
             __ButtonNewGame.Visible = false;
             form.Controls.Add(__ButtonNewGame);
             //test_button
+        }
+
+        private static void mouseClick(object sender, MouseEventArgs e)
+        {
+            __Bullets.Add(new Bullet(__SpaceShip.Rect.X + __SpaceShip.Rect.Width, __SpaceShip.Rect.Y + __SpaceShip.Rect.Height / 2));
         }
 
         private static void mouseEvent(object sender, MouseEventArgs e)
