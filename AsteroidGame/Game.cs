@@ -88,8 +88,8 @@ namespace AsteroidGame
             {
                 case Keys.ControlKey:
                 case Keys.Space: 
-                    //__Bullet = new Bullet(__SpaceSheep.Rect.Y);
-                    __Bullets.Add(new Bullet(__SpaceShip.Rect.X, __SpaceShip.Rect.Y));
+                      __Bullets.Add(new Bullet(__SpaceShip.Rect.X+__SpaceShip.Rect.Width, __SpaceShip.Rect.Y+__SpaceShip.Rect.Height/2));
+                    Console.Beep(300, 50);
                     break;
 
                 case Keys.Up:
