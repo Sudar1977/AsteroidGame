@@ -88,6 +88,15 @@
     <Content Include="src\Ast.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="src\StarWars.png" />
+    <None Include="src\StarDestroyer3.png" />
+    <None Include="src\StarDestroyer2.png" />
+    <None Include="src\StarDestroyer.png" />
+    <None Include="src\DeathStar2.png" />
+    <None Include="src\SnowSpeeder.png" />
+    <None Include="src\RebelSheep.png" />
+    <None Include="src\Falcon.png" />
+    <None Include="src\Bomber2.png" />
     <None Include="src\X-Wing.png" />
     <None Include="src\Tie.png" />
     <None Include="src\Bomber.png" />

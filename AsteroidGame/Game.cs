@@ -42,7 +42,9 @@ namespace AsteroidGame
 
         private static IEnemyFactory __Factory = new AsteroidFactory();
 
-        private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.DeathStar);
+        //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.DeathStar);
+        private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarDestroyer2);
+        //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarWars);
 
 
         /// <summary> Высота игрового поля </summary>
