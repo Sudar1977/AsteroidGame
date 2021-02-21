@@ -18,33 +18,34 @@ namespace AsteroidGame
         /// <summary> Task 4 Lesson 3 Добавить подсчет очков за сбитые астероиды./// </summary>
         private static int _Counter = 0;
 
-        const int asteroid_count = 10;
+        private int asteroid_count = 10;
         public const int asteroid_size = 50;
         public const int asteroid_max_speed = 20;
 
-        const int enemy_count = 10;
-        const int enemy_size = 50;
-        const int enemy_max_speed = 20;
+        private int enemy_count = 10;
+        public const int enemy_size = 50;
+        public const int enemy_max_speed = 20;
 
         private  BufferedGraphicsContext __Context;
         private  BufferedGraphics __Buffer;
 
-        private static VisualObject[] __GameObjects;
+        private VisualObject[] __GameObjects;
         //private static Bullet      __Bullet;
         public static List <Bullet> __Bullets = new List<Bullet>();
         public static  SpaceShip __SpaceShip;
-        private static SpaceShipController __SpaceShipController = new SpaceShipController();
+        private SpaceShipController __SpaceShipController = new SpaceShipController();
 
-        private static  Random __Rnd;
+        private Random __Rnd;
 
-        private static Timer  __Timer;
-        private static Button __ButtonNewGame;
+        private Timer  __Timer;
+        private Button __ButtonNewGame;
 
-        private  IEnemyFactory __AsteroidFactory = new AsteroidFactory();
+        private IEnemyFactory __AsteroidFactory = new AsteroidFactory();
+        private IEnemyFactory _EnemyShipFactory = new EnemySheepFactory();
 
-        private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.DeathStar);
-        //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarDestroyer);
-        //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarWars);
+        //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.DeathStar);
+        //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarDestroyer3);
+        private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarWars);
 
 
         /// <summary> Высота игрового поля </summary>
@@ -136,19 +137,12 @@ namespace AsteroidGame
 
             for (var i = 0; i < enemy_count; i++)
             {
-                game_objects.Add(
-                    new EnemySheep(
-                        new Point(__Rnd.Next(0, Width), __Rnd.Next(0, Height)),
-                        new Point(-__Rnd.Next(0, enemy_max_speed), 0),
-                        enemy_size));
+                game_objects.Add((EnemySheep)_EnemyShipFactory.Create(__Rnd));
             }
 
             game_objects.Add(new Asteroid(new Point(Width / 2, 200), new Point(-asteroid_max_speed, 0), asteroid_size));
          
             __GameObjects = game_objects.ToArray();//1:23:23 
-
-
-
             __SpaceShip.Destoyed += OnSheepDestroyed;
         }
 
@@ -190,10 +184,7 @@ namespace AsteroidGame
                             if (collision_object is Asteroid)
                                 __GameObjects[i] = (Asteroid)__AsteroidFactory.Create(__Rnd);
                             if (collision_object is EnemySheep)
-                                __GameObjects[i] = new EnemySheep(
-                                                     new Point(__Rnd.Next(0, Width), __Rnd.Next(0, Height)),
-                                                     new Point(-__Rnd.Next(0, enemy_max_speed), 0),
-                                                     enemy_size);
+                                __GameObjects[i] = (EnemySheep)_EnemyShipFactory.Create(__Rnd);
                             Console.Beep(250, 100);
                         }
                     }

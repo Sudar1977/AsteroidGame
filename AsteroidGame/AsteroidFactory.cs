@@ -12,7 +12,7 @@ namespace AsteroidGame
     {
         //public Random Rnd => new Random();
 
-        private static readonly Image __Image = Properties.Resources.Ast;
+        //private static readonly Image __Image = Properties.Resources.Ast;
 
         public Object Create(Random Rnd)
         {
