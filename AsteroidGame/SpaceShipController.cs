@@ -10,18 +10,28 @@ namespace AsteroidGame
 {
     class SpaceShipController
     {
-        public static void mouseClick(object sender, MouseEventArgs e)
+        SpaceShip _SpaceShip;
+        public SpaceShipController()
+        {
+        }
+
+        public SpaceShipController(SpaceShip SpaceShip)
+        {
+            _SpaceShip = SpaceShip;
+        }
+
+        public  void MouseClick(object sender, MouseEventArgs e)
         {
             Game.__Bullets.Add(new Bullet(Game.__SpaceShip.Rect.X + Game.__SpaceShip.Rect.Width, 
                                           Game.__SpaceShip.Rect.Y + Game.__SpaceShip.Rect.Height / 2));
         }
 
-        public static void mouseEvent(object sender, MouseEventArgs e)
+        public  void MouseEvent(object sender, MouseEventArgs e)
         {
             Game.__SpaceShip.SetPostion(Cursor.Position.X, Cursor.Position.Y);
         }
 
-        public static void OnFormKeyDown(object Sender, KeyEventArgs e)
+        public  void OnFormKeyDown(object Sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {

@@ -36,9 +36,10 @@ namespace AsteroidGame
             game_form.Height = game_form_height;
 #endif
             game_form.Show();
-            Game.Initialize(game_form);
-            Game.Load();
-            Game.Draw();
+            Game _Game = new Game();
+            _Game.Initialize(game_form);
+            _Game.Load();
+            _Game.Draw();
             //Music.StarWars();
             Application.Run(game_form);
         }

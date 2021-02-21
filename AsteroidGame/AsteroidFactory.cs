@@ -14,7 +14,7 @@ namespace AsteroidGame
 
         private static readonly Image __Image = Properties.Resources.Ast;
 
-        public Asteroid Create(Random Rnd)
+        public Object Create(Random Rnd)
         {
             Asteroid enemy = new Asteroid(
                                 new Point(Rnd.Next(0, Game.Width), Rnd.Next(0, Game.Height)),

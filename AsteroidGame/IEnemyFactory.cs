@@ -12,6 +12,7 @@ namespace AsteroidGame
     internal interface IEnemyFactory
     {
         //Random Rnd { get; }
-        Asteroid Create(Random Rnd);
+        Object Create(Random Rnd);
+        //EnemySheep Create(Random Rnd);
     }
 }

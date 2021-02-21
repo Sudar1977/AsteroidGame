@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace AsteroidGame
 {
     /// <summary> Класс игровой логики </summary>
-    internal static class Game
+    internal  class Game
     {
         /// <summary> Интервал времени таймера кадра игры    </summary>
         private const int __TimerInterval = 20;
@@ -26,13 +26,13 @@ namespace AsteroidGame
         const int enemy_size = 50;
         const int enemy_max_speed = 20;
 
-        private static BufferedGraphicsContext __Context;
-        private static BufferedGraphics __Buffer;
+        private  BufferedGraphicsContext __Context;
+        private  BufferedGraphics __Buffer;
 
         private static VisualObject[] __GameObjects;
         //private static Bullet      __Bullet;
         public static List <Bullet> __Bullets = new List<Bullet>();
-        public static SpaceShip __SpaceShip;
+        public static  SpaceShip __SpaceShip;
         private static SpaceShipController __SpaceShipController = new SpaceShipController();
 
         private static  Random __Rnd;
@@ -40,10 +40,10 @@ namespace AsteroidGame
         private static Timer  __Timer;
         private static Button __ButtonNewGame;
 
-        private static IEnemyFactory __Factory = new AsteroidFactory();
+        private  IEnemyFactory __AsteroidFactory = new AsteroidFactory();
 
-        //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.DeathStar);
-        private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarDestroyer2);
+        private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.DeathStar);
+        //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarDestroyer);
         //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarWars);
 
 
@@ -53,7 +53,7 @@ namespace AsteroidGame
         public static int Height { get; private set; }
         /// <summary> Инициализация игровой логики </summary>
         /// <param name="form"> Игровая форма </param>
-        public static void Initialize(Form form)
+        public void Initialize(Form form)
         {
             Width = form.Width;
             Height = form.Height;
@@ -67,9 +67,9 @@ namespace AsteroidGame
 
             __Rnd = new Random();
 
-            form.KeyDown += SpaceShipController.OnFormKeyDown;
-            form.MouseMove += SpaceShipController.mouseEvent;//https://www.youtube.com/watch?v=onMsYF9-HCg&list=PLqzmfPe9NPAkWg17LqEYCqXydTwShErLf
-            form.MouseClick += SpaceShipController.mouseClick;
+            form.KeyDown += __SpaceShipController.OnFormKeyDown;
+            form.MouseMove += __SpaceShipController.MouseEvent;//https://www.youtube.com/watch?v=onMsYF9-HCg&list=PLqzmfPe9NPAkWg17LqEYCqXydTwShErLf
+            form.MouseClick += __SpaceShipController.MouseClick;
             //form.KeyPress += OnFormKeyPress;
 
             __ButtonNewGame = new Button();
@@ -84,7 +84,7 @@ namespace AsteroidGame
             //test_button
         }
 
-        private static void OnTestButtonClicked(object Sender, EventArgs e)
+        private void OnTestButtonClicked(object Sender, EventArgs e)
         {
             //MessageBox.Show("Just do it!!!!");
             __ButtonNewGame.Visible = false;
@@ -92,12 +92,12 @@ namespace AsteroidGame
             __Timer.Start();
         }
 
-        private static void OnTimerTick(object Sender, EventArgs e)
+        private void OnTimerTick(object Sender, EventArgs e)
         {
             Update();
-            Draw();
+            this.Draw();
         }
-        public static void Draw()
+        public void Draw()
         {
             Graphics g = __Buffer.Graphics;
             g.Clear(Color.Black);
@@ -114,7 +114,7 @@ namespace AsteroidGame
 
         }
 
-        public static void Load()
+        public void Load()
         {
             List<VisualObject> game_objects = new List<VisualObject>();
 
@@ -131,7 +131,7 @@ namespace AsteroidGame
 
             for(var i = 0; i < asteroid_count; i++)
             {
-                game_objects.Add(__Factory.Create(__Rnd));
+                game_objects.Add((Asteroid)__AsteroidFactory.Create(__Rnd));
             }
 
             for (var i = 0; i < enemy_count; i++)
@@ -152,7 +152,7 @@ namespace AsteroidGame
             __SpaceShip.Destoyed += OnSheepDestroyed;
         }
 
-        private static void OnSheepDestroyed(object sender,EventArgs e)
+        private void OnSheepDestroyed(object sender,EventArgs e)
         {
             __Timer.Stop();
             var g = __Buffer.Graphics;
@@ -162,7 +162,7 @@ namespace AsteroidGame
             __Buffer.Render();
         }
 
-        public static void Update()
+        public void Update()
         {
             foreach (var game_object in __GameObjects)
                 game_object?.Update();
@@ -188,7 +188,7 @@ namespace AsteroidGame
                             __Bullets.Remove(bullet);
                             //bullet = null;
                             if (collision_object is Asteroid)
-                                __GameObjects[i] = __Factory.Create(__Rnd);
+                                __GameObjects[i] = (Asteroid)__AsteroidFactory.Create(__Rnd);
                             if (collision_object is EnemySheep)
                                 __GameObjects[i] = new EnemySheep(
                                                      new Point(__Rnd.Next(0, Width), __Rnd.Next(0, Height)),
