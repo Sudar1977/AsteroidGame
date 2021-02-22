@@ -59,6 +59,7 @@
     <Compile Include="VisualObjects\Bullet.cs" />
     <Compile Include="VisualObjects\ColissionObject.cs" />
     <Compile Include="VisualObjects\EnemySheep.cs" />
+    <Compile Include="VisualObjects\EnemyShipTypes.cs" />
     <Compile Include="VisualObjects\ImageObject.cs" />
     <Compile Include="VisualObjects\SpaceShip.cs" />
     <Compile Include="VisualObjects\Star.cs" />

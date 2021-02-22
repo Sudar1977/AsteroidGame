@@ -4,7 +4,7 @@ namespace AsteroidGame.VisualObjects
 {
     internal abstract class ImageObject : VisualObject
     {
-        private readonly Image _Image;
+        private Image _Image;
         protected ImageObject(Point Position, Point Direction, Size Size,Image Image)
          : base(Position, Direction, Size)
         {
@@ -26,5 +26,10 @@ namespace AsteroidGame.VisualObjects
                 _Direction.Y *= -1;
         }
 
-}
+        public void SetImage(Image image)
+        {
+            _Image = image;
+        }
+
+    }
 }

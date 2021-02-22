@@ -10,7 +10,7 @@ namespace AsteroidGame
 {
     internal class EnemySheepFactory : IEnemyFactory
     {
-
+        //Будем масштабировать размеры по изрображению
         //private static readonly Image __Image = Properties.Resources.Ast;
 
         public Object Create(Random Rnd)
@@ -18,7 +18,8 @@ namespace AsteroidGame
             EnemySheep enemy = new EnemySheep(
                         new Point(Rnd.Next(0, Game.Width),Rnd.Next(0, Game.Height)),
                         new Point(Rnd.Next(0, Game.enemy_max_speed), 0),
-                        Game.enemy_size);
+                        //Game.enemy_size,EnemyShipTypes.BomberRot);
+                        Game.enemy_size,EnemyShipTypes.StarDestroyerRebel);
             return enemy;
         }
     }
