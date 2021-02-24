@@ -28,9 +28,6 @@ namespace AsteroidGame.VisualObjects
 
         public override void Draw(Graphics g)
         {
-            //var rect = Rect;
-            //g.FillEllipse(Brushes.Blue,rect);
-            //g.DrawEllipse(Pens.Gray, rect);
             g.DrawImage(__SpaceShip1, _Position.X, _Position.Y, _Size.Width, _Size.Height);
         }
 

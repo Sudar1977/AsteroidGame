@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AsteroidGame.VisualObjects
 {
+
     internal class EnemySheep : ImageObject, ICollision
     {
         private static readonly Image __Image = Properties.Resources.Tie;
@@ -17,27 +18,55 @@ namespace AsteroidGame.VisualObjects
         public EnemySheep(Point Position, Point Direction, int ImageSize, EnemyShipTypes Type)
          : base(Position, Direction, new Size(ImageSize, ImageSize), __Image)
         {
+            Image SheepImage = Properties.Resources.Tie;
             switch (Type)
             {
                 case EnemyShipTypes.Tie:
-                    this.SetImage(Properties.Resources.Tie);
+                    SheepImage = Properties.Resources.Tie;
                     break;
                 case EnemyShipTypes.Bomber:
-                    this.SetImage(Properties.Resources.Bomber);
+                    SheepImage = Properties.Resources.Bomber;
                     break;
                 case EnemyShipTypes.BomberRot:
-                    this.SetImage(Properties.Resources.Bomber2);
+                    SheepImage = Properties.Resources.Bomber2;
                     break;
                 case EnemyShipTypes.StarDestroyerRebel:
-                    this.SetImage(Properties.Resources.StarDestroyer3);
+                    SheepImage = Properties.Resources.StarDestroyer3;
                     break;
-
             }
-        }
+            this.SetImage(SheepImage);
+            _Size.Width = SheepImage.Width / EnemyShipScales.GetScale(Type);
+            _Size.Height = SheepImage.Height / EnemyShipScales.GetScale(Type);
 
+        }
 
         public Rectangle Rect => new Rectangle(_Position, _Size);
 
         public bool CheckCollision(ICollision obj) => Rect.IntersectsWith(obj.Rect);
+    }
+
+    internal class EnemyShipScales
+    {
+        public static int GetScale(EnemyShipTypes Type)
+        {
+            int Scale = 1;
+            switch (Type)
+            {
+                case EnemyShipTypes.Tie:
+                    Scale = 3;
+                    break;
+                case EnemyShipTypes.Bomber:
+                    Scale = 3;
+                    break;
+                case EnemyShipTypes.BomberRot:
+                    Scale = 3;
+                    break;
+                case EnemyShipTypes.StarDestroyerRebel:
+                    Scale = 2;
+                    break;
+            }
+            return Scale;
+        }
+
     }
 }
