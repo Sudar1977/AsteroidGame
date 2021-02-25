@@ -50,6 +50,7 @@
     <Compile Include="EnemySheepFactory.cs" />
     <Compile Include="ICollision.cs" />
     <Compile Include="IEnemyFactory.cs" />
+    <Compile Include="LoadScens.cs" />
     <Compile Include="Music.cs" />
     <Compile Include="SpaceShipController.cs" />
     <Compile Include="VisualObjects\Asteroid.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="VisualObjects\Bullet.cs" />
     <Compile Include="VisualObjects\ColissionObject.cs" />
     <Compile Include="VisualObjects\EnemySheep.cs" />
+    <Compile Include="VisualObjects\EnemyShipImage.cs" />
+    <Compile Include="VisualObjects\EnemyShipScales.cs" />
     <Compile Include="VisualObjects\EnemyShipTypes.cs" />
     <Compile Include="VisualObjects\ImageObject.cs" />
     <Compile Include="VisualObjects\SpaceShip.cs" />

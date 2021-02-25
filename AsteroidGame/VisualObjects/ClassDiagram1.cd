@@ -74,7 +74,7 @@
     <Position X="5.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>VisualObjects\EnemySheep.cs</FileName>
+      <FileName>VisualObjects\EnemyShipScales.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="AsteroidGame.ICollision">
