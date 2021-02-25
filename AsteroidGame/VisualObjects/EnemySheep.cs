@@ -62,7 +62,7 @@ namespace AsteroidGame.VisualObjects
                     Scale = 3;
                     break;
                 case EnemyShipTypes.StarDestroyerRebel:
-                    Scale = 2;
+                    Scale = 1;
                     break;
             }
             return Scale;

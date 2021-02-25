@@ -104,6 +104,7 @@ namespace AsteroidGame
             g.Clear(Color.Black);
             g.FillRectangle(_Texture1, new RectangleF(0, 0, _Texture1.Image.Width, _Texture1.Image.Height));
             g.DrawString($"{_Counter}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 10);
+            g.DrawString($"{__SpaceShip.Energy}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 35);
             foreach (var game_object in __GameObjects)
                 game_object?.Draw(g);
 
@@ -119,7 +120,7 @@ namespace AsteroidGame
         {
             List<VisualObject> game_objects = new List<VisualObject>();
 
-            __SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10), 50);
+            __SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10));
 
             for (var i = 0; i < 10; i++)
             {
@@ -156,6 +157,12 @@ namespace AsteroidGame
             __Buffer.Render();
         }
 
+
+        private void CollisionEnemy(VisualObject obj)
+        {
+
+        }
+
         public void Update()
         {
             foreach (var game_object in __GameObjects)
@@ -172,7 +179,10 @@ namespace AsteroidGame
                 if(obj is ICollision)
                 {
                     var collision_object = (ICollision)obj;
-                    __SpaceShip.CheckCollision(collision_object);
+                    if(__SpaceShip.CheckCollision(collision_object))
+                    {
+
+                    }
                     foreach (var bullet in __Bullets.ToArray())
                     {
 

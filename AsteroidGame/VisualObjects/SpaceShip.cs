@@ -15,20 +15,32 @@ namespace AsteroidGame.VisualObjects
         public int Energy => _Energy;
         public Rectangle Rect => new Rectangle(_Position, _Size);
 
-        private static readonly Image __SpaceShip1 = Properties.Resources.X_Wing; 
+        private static readonly Image _SpaceShip = Properties.Resources.X_Wing; 
+        //private static readonly Image _SpaceShip = Properties.Resources.Falcon;// .X_Wing; 
+        //private static readonly Image _SpaceShip = Properties.Resources.RebelSheep;// .X_Wing; 
+        //private static readonly Image _SpaceShip = Properties.Resources.SnowSpeeder;// .X_Wing; 
+        private static int _Scale = 6;
+        private static int _Widh = _SpaceShip.Width / _Scale;
+        private static int _Height = _SpaceShip.Height / _Scale;
 
         //public SpaceSheep(Point Position, Point Direction, Size Size) : base(Position, Direction, Size)
         //{
         //}
 
         public SpaceShip(Point Position, Point Direction, int ImageSize)
-            : base(Position, Direction, new Size(ImageSize, ImageSize), __SpaceShip1)
+            : base(Position, Direction, new Size(ImageSize, ImageSize), _SpaceShip)
         {
+        }
+
+        public SpaceShip(Point Position, Point Direction)
+            : base(Position, Direction, new Size(_Widh, _Height), _SpaceShip)
+        {
+
         }
 
         public override void Draw(Graphics g)
         {
-            g.DrawImage(__SpaceShip1, _Position.X, _Position.Y, _Size.Width, _Size.Height);
+            g.DrawImage(_SpaceShip, _Position.X, _Position.Y, _Size.Width, _Size.Height);
         }
 
         public override void Update()
