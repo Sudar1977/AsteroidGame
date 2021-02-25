@@ -145,8 +145,14 @@
   <data name="StarDestroyer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\src\StarDestroyer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="StarDestroyer1left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\src\StarDestroyer1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="StarDestroyer2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\src\StarDestroyer2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StarDestroyer2left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\src\StarDestroyer21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StarDestroyer3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\src\StarDestroyer3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

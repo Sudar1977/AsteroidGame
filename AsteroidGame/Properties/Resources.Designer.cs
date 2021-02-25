@@ -153,9 +153,29 @@ namespace AsteroidGame.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap StarDestroyer1left {
+            get {
+                object obj = ResourceManager.GetObject("StarDestroyer1left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap StarDestroyer2 {
             get {
                 object obj = ResourceManager.GetObject("StarDestroyer2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StarDestroyer2left {
+            get {
+                object obj = ResourceManager.GetObject("StarDestroyer2left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

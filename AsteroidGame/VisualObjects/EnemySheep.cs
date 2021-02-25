@@ -18,6 +18,23 @@ namespace AsteroidGame.VisualObjects
         public EnemySheep(Point Position, Point Direction, int ImageSize, EnemyShipTypes Type)
          : base(Position, Direction, new Size(ImageSize, ImageSize), __Image)
         {
+            Image SheepImage = EnemyShipImage.GetImage(Type);
+            this.SetImage(SheepImage);
+            _Size.Width = SheepImage.Width / EnemyShipScales.GetScale(Type);
+            _Size.Height = SheepImage.Height / EnemyShipScales.GetScale(Type);
+
+        }
+
+        public Rectangle Rect => new Rectangle(_Position, _Size);
+
+        public bool CheckCollision(ICollision obj) => Rect.IntersectsWith(obj.Rect);
+    }
+
+
+    internal class EnemyShipImage
+    {
+        public static Image GetImage(EnemyShipTypes Type)
+        {
             Image SheepImage = Properties.Resources.Tie;
             switch (Type)
             {
@@ -33,16 +50,15 @@ namespace AsteroidGame.VisualObjects
                 case EnemyShipTypes.StarDestroyerRebel:
                     SheepImage = Properties.Resources.StarDestroyer3;
                     break;
+                case EnemyShipTypes.StarDestroyerLeft:
+                    SheepImage = Properties.Resources.StarDestroyer1left;
+                    break;
+                case EnemyShipTypes.StarDestroyerDown:
+                    SheepImage = Properties.Resources.StarDestroyer2left;
+                    break;
             }
-            this.SetImage(SheepImage);
-            _Size.Width = SheepImage.Width / EnemyShipScales.GetScale(Type);
-            _Size.Height = SheepImage.Height / EnemyShipScales.GetScale(Type);
-
+            return SheepImage;
         }
-
-        public Rectangle Rect => new Rectangle(_Position, _Size);
-
-        public bool CheckCollision(ICollision obj) => Rect.IntersectsWith(obj.Rect);
     }
 
     internal class EnemyShipScales
@@ -63,6 +79,12 @@ namespace AsteroidGame.VisualObjects
                     break;
                 case EnemyShipTypes.StarDestroyerRebel:
                     Scale = 1;
+                    break;
+                case EnemyShipTypes.StarDestroyerLeft:
+                    Scale = 2;
+                    break;
+                case EnemyShipTypes.StarDestroyerDown:
+                    Scale = 3;
                     break;
             }
             return Scale;

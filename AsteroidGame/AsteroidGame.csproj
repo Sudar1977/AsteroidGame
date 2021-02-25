@@ -90,6 +90,8 @@
     <Content Include="src\Ast.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="src\StarDestroyer1.png" />
+    <None Include="src\StarDestroyer21.png" />
     <None Include="src\StarWars.png" />
     <None Include="src\StarDestroyer3.png" />
     <None Include="src\StarDestroyer2.png" />
