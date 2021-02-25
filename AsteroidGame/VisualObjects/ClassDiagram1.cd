@@ -35,7 +35,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAUAIAEAAAQAQgAgAAAEAAAAACEAAACAQAAAAoEAgAA=</HashCode>
+      <HashCode>AAUAIAEAAAQAQgAgAQAEAACAACEAAACAQAAAAoEAgAA=</HashCode>
       <FileName>VisualObjects\SpaceShip.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -71,7 +71,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="AsteroidGame.VisualObjects.EnemyShipScales" Collapsed="true">
-    <Position X="5.25" Y="4.5" Width="1.5" />
+    <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>VisualObjects\EnemyShipScales.cs</FileName>

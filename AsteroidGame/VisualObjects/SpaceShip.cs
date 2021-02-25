@@ -10,8 +10,9 @@ namespace AsteroidGame.VisualObjects
     internal class SpaceShip : ImageObject, ICollision
     {
         public event EventHandler Destoyed; //2:10:10
+        private const int MaxEnergy = 100;
 
-        private int _Energy = 20;
+        private int _Energy = MaxEnergy;
         public int Energy => _Energy;
         public Rectangle Rect => new Rectangle(_Position, _Size);
 
@@ -50,18 +51,18 @@ namespace AsteroidGame.VisualObjects
         public bool CheckCollision(ICollision obj)
         {
             var is_collision = Rect.IntersectsWith(obj.Rect);
-            if(is_collision && obj is Asteroid asteroid)
-            {
-                ChangeEnergy(-asteroid.Power);
-            }
+            //if(is_collision && obj is Asteroid asteroid)
+            //{
+            //    ChangeEnergy(-asteroid.Power);
+            //}
             return is_collision;
         }
 
         public void ChangeEnergy(int delta)
         {
             _Energy += delta;
-            //if (_Energy < 0)
-            //    Destoyed?.Invoke(this,EventArgs.Empty);
+            if (_Energy < 0)
+                Destoyed?.Invoke(this,EventArgs.Empty);
         }
 
         public void MoveUp()
@@ -92,6 +93,11 @@ namespace AsteroidGame.VisualObjects
         {
             _Position.X = X;
             _Position.Y = Y;
+        }
+
+        public void EnergyRestore()
+        {
+            _Energy = MaxEnergy;
         }
 
     }

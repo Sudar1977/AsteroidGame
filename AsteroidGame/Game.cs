@@ -10,13 +10,13 @@ using System.Windows.Forms;
 namespace AsteroidGame
 {
     /// <summary> Класс игровой логики </summary>
-    internal  class Game
+    internal class Game
     {
         /// <summary> Интервал времени таймера кадра игры    </summary>
         private const int __TimerInterval = 20;
 
         /// <summary> Task 4 Lesson 3 Добавить подсчет очков за сбитые астероиды./// </summary>
-        private static int _Counter = 0;
+        public static int _Counter = 0;
 
         public const int asteroid_count = 10;
         public const int asteroid_size = 50;
@@ -26,25 +26,25 @@ namespace AsteroidGame
         public const int enemy_size = 50;
         public const int enemy_max_speed = 20;
 
-        private  BufferedGraphicsContext __Context;
-        private  BufferedGraphics __Buffer;
+        private BufferedGraphicsContext __Context;
+        private BufferedGraphics __Buffer;
 
         private VisualObject[] _GameObjects;
-        //private static Bullet      __Bullet;
-        public static List <Bullet> __Bullets = new List<Bullet>();
-        public static  SpaceShip __SpaceShip;
-        private SpaceShipController _SpaceShipController = new SpaceShipController();
+
+        public static List<Bullet> __Bullets = new List<Bullet>();
+        public static SpaceShip __SpaceShip;
 
 
-        private Timer  __Timer;
+
+        private Timer __Timer;
         private Button __ButtonNewGame;
 
         private readonly Random _Rnd = new Random();
-        private readonly IEnemyFactory _AsteroidFactory = new AsteroidFactory();
-        private readonly IEnemyFactory _EnemyShipFactory = new EnemySheepFactory();
         private readonly LoadScens _LoadScens = new LoadScens();
+        private readonly SpaceShipController _SpaceShipController = new SpaceShipController();
+        private readonly CollisionCotroller _CollisionCotroller = new CollisionCotroller();
 
-        private readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.DeathStar);
+        private readonly TextureBrush _BackGroundTexture = new TextureBrush(Properties.Resources.DeathStar);
         //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarDestroyer3);
         //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarWars);
 
@@ -88,6 +88,7 @@ namespace AsteroidGame
         {
             //MessageBox.Show("Just do it!!!!");
             __ButtonNewGame.Visible = false;
+            __SpaceShip.EnergyRestore();
             //Music.MissionImpossible();
             __Timer.Start();
         }
@@ -101,7 +102,7 @@ namespace AsteroidGame
         {
             Graphics g = __Buffer.Graphics;
             g.Clear(Color.Black);
-            g.FillRectangle(_Texture1, new RectangleF(0, 0, _Texture1.Image.Width, _Texture1.Image.Height));
+            g.FillRectangle(_BackGroundTexture, new RectangleF(0, 0, _BackGroundTexture.Image.Width, _BackGroundTexture.Image.Height));
             g.DrawString($"{_Counter}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 10);
             g.DrawString($"{__SpaceShip.Energy}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 35);
             foreach (var game_object in _GameObjects)
@@ -120,55 +121,28 @@ namespace AsteroidGame
             _GameObjects = _LoadScens.LoadSceneObjects(_Rnd);
         }
 
-        private void OnSheepDestroyed(object sender,EventArgs e)
+        private void OnSheepDestroyed(object sender, EventArgs e)
         {
             __Timer.Stop();
             var g = __Buffer.Graphics;
             __ButtonNewGame.Visible = true;
             g.Clear(Color.DarkBlue);
-            g.DrawString("Game over!!!", new Font(FontFamily.GenericSerif,60,FontStyle.Bold),Brushes.Red,200,100);
+            g.DrawString("Game over!!!", new Font(FontFamily.GenericSerif, 60, FontStyle.Bold), Brushes.Red, 200, 100);
             __Buffer.Render();
         }
-
 
         public void Update()
         {
             foreach (var game_object in _GameObjects)
-                game_object?.Update();
-            //__Bullet?.Update();
-            __Bullets.ForEach(bullet => bullet.Update());
-
-            foreach (var bullet_to_remove in __Bullets.Where(b => b.Rect.Left > Width).ToArray())
-                __Bullets.Remove(bullet_to_remove);
-
-            for(var i = 0; i < _GameObjects.Length; i++)
             {
-                var obj = _GameObjects[i];
-                if(obj is ICollision)
-                {
-                    var collision_object = (ICollision)obj;
-                    if(__SpaceShip.CheckCollision(collision_object))
-                    {
-
-                    }
-                    foreach (var bullet in __Bullets.ToArray())
-                    {
-
-                        if (bullet.CheckCollision(collision_object))
-                        {
-                            _Counter++;
-                            __Bullets.Remove(bullet);
-                            //bullet = null;
-                            if (collision_object is Asteroid)
-                               _GameObjects[i] = (Asteroid)_AsteroidFactory.Create(_Rnd);
-                               // obj  = (Asteroid)__AsteroidFactory.Create(__Rnd);
-                            if (collision_object is EnemySheep)
-                                _GameObjects[i] = (EnemySheep)_EnemyShipFactory.Create(_Rnd);
-                            Console.Beep(250, 100);
-                        }
-                    }
-                }
+                game_object?.Update();
             }
+            __Bullets.ForEach(bullet => bullet.Update());
+            foreach (var bullet_to_remove in __Bullets.Where(b => b.Rect.Left > Width).ToArray())
+            {
+                __Bullets.Remove(bullet_to_remove);
+            }
+            _CollisionCotroller.CollisionVisualObjects(_GameObjects,_Rnd);
         }
     }
 }
