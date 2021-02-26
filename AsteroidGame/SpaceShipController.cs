@@ -1,6 +1,7 @@
 ﻿using AsteroidGame.VisualObjects;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,25 +11,24 @@ namespace AsteroidGame
 {
     class SpaceShipController
     {
-        SpaceShip _SpaceShip;
-        public SpaceShipController()
-        {
-        }
+        private readonly SpaceShip _SpaceShip;
+        private Rectangle _ShipRect;
 
         public SpaceShipController(SpaceShip SpaceShip)
         {
             _SpaceShip = SpaceShip;
+            _ShipRect  = SpaceShip.Rect;
         }
 
         public  void MouseClick(object sender, MouseEventArgs e)
         {
-            Game.__Bullets.Add(new Bullet(Game.__SpaceShip.Rect.X + Game.__SpaceShip.Rect.Width, 
-                                          Game.__SpaceShip.Rect.Y + Game.__SpaceShip.Rect.Height / 2));
+            Game.__Bullets.Add(new Bullet(_ShipRect.X + _ShipRect.Width, 
+                                          _ShipRect.Y + _ShipRect.Height / 2));
         }
 
         public  void MouseEvent(object sender, MouseEventArgs e)
         {
-            Game.__SpaceShip.SetPostion(Cursor.Position.X, Cursor.Position.Y);
+            _SpaceShip.SetPostion(Cursor.Position.X, Cursor.Position.Y);
         }
 
         public  void OnFormKeyDown(object Sender, KeyEventArgs e)
@@ -37,33 +37,31 @@ namespace AsteroidGame
             {
                 case Keys.ControlKey:
                 case Keys.Space:
-                    Game.__Bullets.Add(new Bullet(Game.__SpaceShip.Rect.X + Game.__SpaceShip.Rect.Width,
-                                                  Game.__SpaceShip.Rect.Y + Game.__SpaceShip.Rect.Height / 2));
+                    Game.__Bullets.Add(new Bullet(_ShipRect.X + _ShipRect.Width,
+                                                  _ShipRect.Y + _ShipRect.Height / 2));
                     //Console.Beep(300, 50);
                     break;
 
                 case Keys.Up:
                 case Keys.W:
-                    Game.__SpaceShip.MoveUp();
+                    _SpaceShip.MoveUp();
                     break;
 
                 case Keys.Down:
                 case Keys.S:
-                    Game.__SpaceShip.MoveDown();
+                    _SpaceShip.MoveDown();
                     break;
 
                 case Keys.Right:
                 case Keys.D:
-                    Game.__SpaceShip.MoveForward();
+                    _SpaceShip.MoveForward();
                     break;
 
                 case Keys.Left:
                 case Keys.A:
-                    Game.__SpaceShip.MoveBack();
+                    _SpaceShip.MoveBack();
                     break;
             }
         }
-
-
     }
 }

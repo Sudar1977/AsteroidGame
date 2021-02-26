@@ -41,7 +41,7 @@ namespace AsteroidGame
 
         private readonly Random _Rnd = new Random();
         private readonly LoadScens _LoadScens = new LoadScens();
-        private readonly SpaceShipController _SpaceShipController = new SpaceShipController();
+        private SpaceShipController _SpaceShipController;
         private readonly CollisionCotroller _CollisionCotroller = new CollisionCotroller();
 
         private readonly TextureBrush _BackGroundTexture = new TextureBrush(Properties.Resources.DeathStar);
@@ -66,6 +66,10 @@ namespace AsteroidGame
             __Timer = new Timer { Interval = __TimerInterval };
             __Timer.Tick += OnTimerTick;
             __Timer.Start();
+
+            __SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10));
+            _SpaceShipController = new SpaceShipController(__SpaceShip);
+            __SpaceShip.Destoyed += OnSheepDestroyed;
 
             form.KeyDown += _SpaceShipController.OnFormKeyDown;
             form.MouseMove += _SpaceShipController.MouseEvent;//https://www.youtube.com/watch?v=onMsYF9-HCg&list=PLqzmfPe9NPAkWg17LqEYCqXydTwShErLf
@@ -116,8 +120,6 @@ namespace AsteroidGame
 
         public void Load()
         {
-            __SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10));
-            __SpaceShip.Destoyed += OnSheepDestroyed;
             _GameObjects = _LoadScens.LoadSceneObjects(_Rnd);
         }
 
