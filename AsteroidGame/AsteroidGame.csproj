@@ -48,24 +48,24 @@
   <ItemGroup>
     <Compile Include="AsteroidFactory.cs" />
     <Compile Include="CollisionCotroller.cs" />
-    <Compile Include="EnemySheepFactory.cs" />
+    <Compile Include="EnemyShip\EnemySheepFactory.cs" />
     <Compile Include="ICollision.cs" />
-    <Compile Include="IEnemyFactory.cs" />
+    <Compile Include="EnemyShip\IEnemyFactory.cs" />
     <Compile Include="LoadScens.cs" />
     <Compile Include="Music.cs" />
-    <Compile Include="SpaceShipController.cs" />
+    <Compile Include="SpaceShip\SpaceShipController.cs" />
     <Compile Include="VisualObjects\Asteroid.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualObjects\Bullet.cs" />
     <Compile Include="VisualObjects\ColissionObject.cs" />
-    <Compile Include="VisualObjects\EnemySheep.cs" />
-    <Compile Include="VisualObjects\EnemyShipImage.cs" />
-    <Compile Include="VisualObjects\EnemyShipScales.cs" />
-    <Compile Include="VisualObjects\EnemyShipTypes.cs" />
+    <Compile Include="EnemyShip\EnemySheep.cs" />
+    <Compile Include="EnemyShip\Config\EnemyShipImage.cs" />
+    <Compile Include="EnemyShip\Config\EnemyShipScales.cs" />
+    <Compile Include="EnemyShip\Config\EnemyShipTypes.cs" />
     <Compile Include="VisualObjects\ImageObject.cs" />
-    <Compile Include="VisualObjects\SpaceShip.cs" />
+    <Compile Include="SpaceShip\SpaceShip.cs" />
     <Compile Include="VisualObjects\Star.cs" />
     <Compile Include="VisualObjects\VisualObject.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -87,7 +87,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="VisualObjects\ClassDiagram1.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

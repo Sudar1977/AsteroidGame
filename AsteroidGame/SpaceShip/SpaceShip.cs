@@ -100,5 +100,11 @@ namespace AsteroidGame.VisualObjects
             _Energy = MaxEnergy;
         }
 
+        public void Fire()
+        {
+            Game.__Bullets.Add(new Bullet(_Position.X + _Size.Width,
+                                          _Position.Y + _Size.Height / 2));
+        }
+
     }
 }

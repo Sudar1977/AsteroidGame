@@ -8,13 +8,13 @@
             switch (Type)
             {
                 case EnemyShipTypes.Tie:
-                    Scale = 3;
+                    Scale = 5;
                     break;
                 case EnemyShipTypes.Bomber:
-                    Scale = 3;
+                    Scale = 5;
                     break;
                 case EnemyShipTypes.BomberRot:
-                    Scale = 3;
+                    Scale = 5;
                     break;
                 case EnemyShipTypes.StarDestroyerRebel:
                     Scale = 1;

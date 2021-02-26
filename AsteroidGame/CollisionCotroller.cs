@@ -42,7 +42,7 @@ namespace AsteroidGame
                             // obj  = (Asteroid)__AsteroidFactory.Create(__Rnd);
                             if (collision_object is EnemySheep)
                                 _GameObjects[i] = (EnemySheep)_EnemyShipFactory.Create(_Rnd);
-                            Console.Beep(250, 100);
+                            //Console.Beep(250, 100);
                         }
                     }
                 }

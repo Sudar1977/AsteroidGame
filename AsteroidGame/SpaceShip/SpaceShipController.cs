@@ -12,34 +12,26 @@ namespace AsteroidGame
     class SpaceShipController
     {
         private readonly SpaceShip _SpaceShip;
-        private Rectangle _ShipRect;
-
         public SpaceShipController(SpaceShip SpaceShip)
         {
             _SpaceShip = SpaceShip;
-            _ShipRect  = SpaceShip.Rect;
         }
 
         public  void MouseClick(object sender, MouseEventArgs e)
         {
-            Game.__Bullets.Add(new Bullet(_ShipRect.X + _ShipRect.Width, 
-                                          _ShipRect.Y + _ShipRect.Height / 2));
+            _SpaceShip.Fire();
         }
-
         public  void MouseEvent(object sender, MouseEventArgs e)
         {
             _SpaceShip.SetPostion(Cursor.Position.X, Cursor.Position.Y);
         }
-
         public  void OnFormKeyDown(object Sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
                 case Keys.ControlKey:
                 case Keys.Space:
-                    Game.__Bullets.Add(new Bullet(_ShipRect.X + _ShipRect.Width,
-                                                  _ShipRect.Y + _ShipRect.Height / 2));
-                    //Console.Beep(300, 50);
+                    _SpaceShip.Fire();
                     break;
 
                 case Keys.Up:

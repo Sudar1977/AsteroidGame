@@ -35,8 +35,8 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAUAIAEAAAQAQgAgAQAEAACAACEAAACAQAAAAoEAgAA=</HashCode>
-      <FileName>VisualObjects\SpaceShip.cs</FileName>
+      <HashCode>AAUAIAEAAAQAQgAgAQAEAACAACEEAACAQAAAAoEAgAA=</HashCode>
+      <FileName>SpaceShip\SpaceShip.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -66,7 +66,7 @@
     <Position X="2.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAACAAAACAAAAAAAAAAAA=</HashCode>
-      <FileName>VisualObjects\EnemySheep.cs</FileName>
+      <FileName>EnemyShip\EnemySheep.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -74,7 +74,7 @@
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>VisualObjects\EnemyShipScales.cs</FileName>
+      <FileName>EnemyShip\Config\EnemyShipScales.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="AsteroidGame.ICollision">
