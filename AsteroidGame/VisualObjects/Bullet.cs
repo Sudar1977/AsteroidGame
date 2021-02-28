@@ -31,5 +31,6 @@ namespace AsteroidGame.VisualObjects
         {
             _Position = new Point(_Position.X + __BulletSpeed, _Position.Y);
         }
+
     }
 }

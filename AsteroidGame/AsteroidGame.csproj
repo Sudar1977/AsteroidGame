@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsteroidFactory.cs" />
+    <Compile Include="BulletCollisionController.cs" />
+    <Compile Include="BulletsList.cs" />
     <Compile Include="CollisionCotroller.cs" />
     <Compile Include="EnemyShip\EnemySheepFactory.cs" />
     <Compile Include="ICollision.cs" />

@@ -9,7 +9,8 @@ namespace AsteroidGame.VisualObjects
 {
     internal class SpaceShip : ImageObject, ICollision
     {
-        public event EventHandler Destoyed; //2:10:10
+        public event EventHandler Destoyed; 
+        public event Action<int, int> BulletShoot; 
         private const int MaxEnergy = 100;
 
         private int _Energy = MaxEnergy;
@@ -102,8 +103,10 @@ namespace AsteroidGame.VisualObjects
 
         public void Fire()
         {
-            Game.__Bullets.Add(new Bullet(_Position.X + _Size.Width,
-                                          _Position.Y + _Size.Height / 2));
+            BulletShoot?.Invoke(_Position.X + _Size.Width, 
+                                _Position.Y + _Size.Height/2 +5);
+            //Game.__Bullets.Add(new Bullet(_Position.X + _Size.Width,
+            //                              _Position.Y + _Size.Height / 2));
         }
 
     }

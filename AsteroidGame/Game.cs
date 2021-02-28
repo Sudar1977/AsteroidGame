@@ -31,10 +31,7 @@ namespace AsteroidGame
 
         private VisualObject[] _GameObjects;
 
-        public static List<Bullet> __Bullets = new List<Bullet>();
         public static SpaceShip __SpaceShip;
-
-
 
         private Timer __Timer;
         private Button __ButtonNewGame;
@@ -43,6 +40,8 @@ namespace AsteroidGame
         private readonly LoadScens _LoadScens = new LoadScens();
         private SpaceShipController _SpaceShipController;
         private readonly CollisionCotroller _CollisionCotroller = new CollisionCotroller();
+        private readonly BulletCollisionController _BulletCollisionController = new BulletCollisionController();
+        private BulletsList _BulletsList;// = new BulletsList();
 
         private readonly TextureBrush _BackGroundTexture = new TextureBrush(Properties.Resources.DeathStar);
         //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarDestroyer3);
@@ -67,9 +66,12 @@ namespace AsteroidGame
             __Timer.Tick += OnTimerTick;
             __Timer.Start();
 
+
+            _BulletsList = new BulletsList();
             __SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10));
             _SpaceShipController = new SpaceShipController(__SpaceShip);
             __SpaceShip.Destoyed += OnSheepDestroyed;
+            __SpaceShip.BulletShoot += _BulletsList.OnBulletShoot;
 
             form.KeyDown += _SpaceShipController.OnFormKeyDown;
             form.MouseMove += _SpaceShipController.MouseEvent;//https://www.youtube.com/watch?v=onMsYF9-HCg&list=PLqzmfPe9NPAkWg17LqEYCqXydTwShErLf
@@ -85,6 +87,8 @@ namespace AsteroidGame
             __ButtonNewGame.Click += OnTestButtonClicked;
             __ButtonNewGame.Visible = false;
             form.Controls.Add(__ButtonNewGame);
+
+
             //test_button
         }
 
@@ -112,7 +116,8 @@ namespace AsteroidGame
             foreach (var game_object in _GameObjects)
                 game_object?.Draw(g);
             __SpaceShip.Draw(g);
-            __Bullets.ForEach(bullet => bullet.Draw(g));
+            //__Bullets.ForEach(bullet => bullet.Draw(g));
+            _BulletsList.Draw(g);
             if (!__Timer.Enabled)
                 return;
             __Buffer.Render();
@@ -139,12 +144,9 @@ namespace AsteroidGame
             {
                 game_object?.Update();
             }
-            __Bullets.ForEach(bullet => bullet.Update());
-            foreach (var bullet_to_remove in __Bullets.Where(b => b.Rect.Left > Width).ToArray())
-            {
-                __Bullets.Remove(bullet_to_remove);
-            }
-            _CollisionCotroller.CollisionVisualObjects(_GameObjects,_Rnd);
+            _BulletsList.Update();
+            _CollisionCotroller.CollisionVisualObjects(_GameObjects, _Rnd);
+            _BulletCollisionController.Collision(_GameObjects, _Rnd, _BulletsList);
         }
     }
 }
