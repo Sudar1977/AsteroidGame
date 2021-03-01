@@ -26,23 +26,23 @@ namespace AsteroidGame
         public const int enemy_size = 50;
         public const int enemy_max_speed = 20;
 
-        private BufferedGraphicsContext __Context;
-        private BufferedGraphics __Buffer;
+        private BufferedGraphicsContext _Context;
+        private BufferedGraphics _Buffer;
 
         private VisualObject[] _GameObjects;
-
-        public static SpaceShip __SpaceShip;
-
-        private Timer __Timer;
-        private Button __ButtonNewGame;
+        private Timer _Timer;
+        private Button _ButtonNewGame;
 
         private readonly Random _Rnd = new Random();
         private readonly LoadScens _LoadScens = new LoadScens();
+
+        private SpaceShip _SpaceShip;
         private SpaceShipController _SpaceShipController;
         private SpaceShipCollisionController _SpaceShipCollisionController;
-        private BulletCollisionController _BulletCollisionController;// = new BulletCollisionController();
+
+        private BulletsList _BulletsList;
+        private BulletCollisionController _BulletCollisionController;
         
-        private BulletsList _BulletsList;// = new BulletsList();
 
         private readonly TextureBrush _BackGroundTexture = new TextureBrush(Properties.Resources.DeathStar);
         //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarDestroyer3);
@@ -59,37 +59,37 @@ namespace AsteroidGame
         {
             Width = form.Width;
             Height = form.Height;
-            __Context = BufferedGraphicsManager.Current;
+            _Context = BufferedGraphicsManager.Current;
             Graphics g = form.CreateGraphics();
-            __Buffer = __Context.Allocate(g, new Rectangle(0, 0, Width, Height));
+            _Buffer = _Context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
-            __Timer = new Timer { Interval = __TimerInterval };
-            __Timer.Tick += OnTimerTick;
-            __Timer.Start();
+            _Timer = new Timer { Interval = __TimerInterval };
+            _Timer.Tick += OnTimerTick;
+            _Timer.Start();
 
 
             _BulletsList = new BulletsList();
             _BulletCollisionController = new BulletCollisionController(_BulletsList);
-            __SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10));
-            _SpaceShipController = new SpaceShipController(__SpaceShip);
-            _SpaceShipCollisionController = new SpaceShipCollisionController(__SpaceShip);
-            __SpaceShip.Destoyed += OnSheepDestroyed;
-            __SpaceShip.BulletShoot += _BulletsList.OnBulletShoot;
+            _SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10),SpaceShipTypes.X_Wing);
+            _SpaceShipController = new SpaceShipController(_SpaceShip);
+            _SpaceShipCollisionController = new SpaceShipCollisionController(_SpaceShip);
+            _SpaceShip.Destoyed += OnSheepDestroyed;
+            _SpaceShip.BulletShoot += _BulletsList.OnBulletShoot;
 
             form.KeyDown += _SpaceShipController.OnFormKeyDown;
             form.MouseMove += _SpaceShipController.MouseEvent;//https://www.youtube.com/watch?v=onMsYF9-HCg&list=PLqzmfPe9NPAkWg17LqEYCqXydTwShErLf
             form.MouseClick += _SpaceShipController.MouseClick;
             //form.KeyPress += OnFormKeyPress;
 
-            __ButtonNewGame = new Button();
-            __ButtonNewGame.Width = 200;
-            __ButtonNewGame.Height = 30;
-            __ButtonNewGame.Text = "New GAME!!!";
-            __ButtonNewGame.Left = 20;
-            __ButtonNewGame.Top = 30;
-            __ButtonNewGame.Click += OnTestButtonClicked;
-            __ButtonNewGame.Visible = false;
-            form.Controls.Add(__ButtonNewGame);
+            _ButtonNewGame = new Button();
+            _ButtonNewGame.Width = 200;
+            _ButtonNewGame.Height = 30;
+            _ButtonNewGame.Text = "New GAME!!!";
+            _ButtonNewGame.Left = 20;
+            _ButtonNewGame.Top = 30;
+            _ButtonNewGame.Click += OnTestButtonClicked;
+            _ButtonNewGame.Visible = false;
+            form.Controls.Add(_ButtonNewGame);
 
 
             //test_button
@@ -98,10 +98,10 @@ namespace AsteroidGame
         private void OnTestButtonClicked(object Sender, EventArgs e)
         {
             //MessageBox.Show("Just do it!!!!");
-            __ButtonNewGame.Visible = false;
-            __SpaceShip.EnergyRestore();
+            _ButtonNewGame.Visible = false;
+            _SpaceShip.EnergyRestore();
             //Music.MissionImpossible();
-            __Timer.Start();
+            _Timer.Start();
         }
 
         private void OnTimerTick(object Sender, EventArgs e)
@@ -111,19 +111,19 @@ namespace AsteroidGame
         }
         public void Draw()
         {
-            Graphics g = __Buffer.Graphics;
+            Graphics g = _Buffer.Graphics;
             g.Clear(Color.Black);
             g.FillRectangle(_BackGroundTexture, new RectangleF(0, 0, _BackGroundTexture.Image.Width, _BackGroundTexture.Image.Height));
             g.DrawString($"{_Counter}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 10);
-            g.DrawString($"{__SpaceShip.Energy}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 35);
+            g.DrawString($"{_SpaceShip.Energy}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 35);
             foreach (var game_object in _GameObjects)
                 game_object?.Draw(g);
-            __SpaceShip.Draw(g);
+            _SpaceShip.Draw(g);
             //__Bullets.ForEach(bullet => bullet.Draw(g));
             _BulletsList.Draw(g);
-            if (!__Timer.Enabled)
+            if (!_Timer.Enabled)
                 return;
-            __Buffer.Render();
+            _Buffer.Render();
         }
 
         public void Load()
@@ -133,12 +133,12 @@ namespace AsteroidGame
 
         private void OnSheepDestroyed(object sender, EventArgs e)
         {
-            __Timer.Stop();
-            var g = __Buffer.Graphics;
-            __ButtonNewGame.Visible = true;
+            _Timer.Stop();
+            var g = _Buffer.Graphics;
+            _ButtonNewGame.Visible = true;
             g.Clear(Color.DarkBlue);
             g.DrawString("Game over!!!", new Font(FontFamily.GenericSerif, 60, FontStyle.Bold), Brushes.Red, 200, 100);
-            __Buffer.Render();
+            _Buffer.Render();
         }
 
         public void Update()
@@ -149,6 +149,7 @@ namespace AsteroidGame
             }
             _BulletsList.Update();
             _BulletCollisionController.Collision(_GameObjects, _Rnd);
+            //_BulletCollisionController.Collision(_Rnd);
             _SpaceShipCollisionController.Collision(_GameObjects, _Rnd);
         }
     }

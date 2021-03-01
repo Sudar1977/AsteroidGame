@@ -11,6 +11,9 @@ namespace AsteroidGame.VisualObjects
     internal class EnemySheep : ImageObject, ICollision
     {
         private static readonly Image __Image = Properties.Resources.Tie;
+        public int Power { get; set; } = 3;
+        public int Energy { get; set; } = 3;
+
         public EnemySheep(Point Position, Point Direction, int ImageSize)
          : base(Position, Direction, new Size(ImageSize, ImageSize), __Image)
         {

@@ -12,6 +12,8 @@ namespace AsteroidGame.VisualObjects
         public event EventHandler Destoyed; 
         public event Action<int, int> BulletShoot; 
         private const int MaxEnergy = 100;
+        private SpaceShipTypes _Type = SpaceShipTypes.X_Wing;
+        public SpaceShipTypes Type => _Type;
 
         private int _Energy = MaxEnergy;
         public int Energy => _Energy;
@@ -25,10 +27,6 @@ namespace AsteroidGame.VisualObjects
         private static int _Widh = _SpaceShip.Width / _Scale;
         private static int _Height = _SpaceShip.Height / _Scale;
 
-        //public SpaceSheep(Point Position, Point Direction, Size Size) : base(Position, Direction, Size)
-        //{
-        //}
-
         public SpaceShip(Point Position, Point Direction, int ImageSize)
             : base(Position, Direction, new Size(ImageSize, ImageSize), _SpaceShip)
         {
@@ -37,26 +35,26 @@ namespace AsteroidGame.VisualObjects
         public SpaceShip(Point Position, Point Direction)
             : base(Position, Direction, new Size(_Widh, _Height), _SpaceShip)
         {
-
         }
 
-        public override void Draw(Graphics g)
+        public SpaceShip(Point Position, Point Direction,SpaceShipTypes Type)
+            : base(Position, Direction, new Size(_Widh, _Height), _SpaceShip)
         {
-            g.DrawImage(_SpaceShip, _Position.X, _Position.Y, _Size.Width, _Size.Height);
+            ChangeType(Type);
         }
 
-        public override void Update()
+        public void ChangeType(SpaceShipTypes Type)
         {
-
+            Image SheepImage = SpaceShipImage.GetImage(Type);
+            this.SetImage(SheepImage);
+            _Size.Width = SheepImage.Width / SpaceShipScales.GetScale(Type);
+            _Size.Height = SheepImage.Height / SpaceShipScales.GetScale(Type);
+            _Type = Type;
         }
+
         public bool CheckCollision(ICollision obj)
         {
-            var is_collision = Rect.IntersectsWith(obj.Rect);
-            //if(is_collision && obj is Asteroid asteroid)
-            //{
-            //    ChangeEnergy(-asteroid.Power);
-            //}
-            return is_collision;
+            return Rect.IntersectsWith(obj.Rect);
         }
 
         public void ChangeEnergy(int delta)
@@ -105,8 +103,6 @@ namespace AsteroidGame.VisualObjects
         {
             BulletShoot?.Invoke(_Position.X + _Size.Width, 
                                 _Position.Y + _Size.Height/2 +5);
-            //Game.__Bullets.Add(new Bullet(_Position.X + _Size.Width,
-            //                              _Position.Y + _Size.Height / 2));
         }
 
     }

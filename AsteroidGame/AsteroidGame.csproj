@@ -54,6 +54,7 @@
     <Compile Include="EnemyShip\IEnemyFactory.cs" />
     <Compile Include="LoadScens.cs" />
     <Compile Include="Music.cs" />
+    <Compile Include="SpaceShip\Config\SpaceShipConfigs.cs" />
     <Compile Include="SpaceShip\SpaceShipCollisionController.cs" />
     <Compile Include="SpaceShip\SpaceShipController.cs" />
     <Compile Include="Asteroid\Asteroid.cs" />

@@ -7,16 +7,22 @@ namespace AsteroidGame
     {
         private readonly IEnemyFactory _AsteroidFactory = new AsteroidFactory();
         private readonly IEnemyFactory _EnemyShipFactory = new EnemySheepFactory();
-        private BulletsList _bullets;
+        private readonly BulletsList _bullets;
+        //private VisualObject[] _GameObjects;
 
-        public BulletCollisionController(BulletsList bullets)
+        //public BulletCollisionController(VisualObject[] GameObjects,BulletsList Bullets)
+        public BulletCollisionController(BulletsList Bullets)
         {
-            _bullets = bullets;
+            _bullets = Bullets;
+            //_GameObjects = GameObjects;
         }
 
         //public void Collision(VisualObject[] _GameObjects, Random _Rnd, BulletsList bullets)
         public void Collision(VisualObject[] _GameObjects, Random _Rnd)
+        //public void Collision(Random _Rnd)
         {
+            //if (_GameObjects == null)
+            //    return;
             for (var i = 0; i < _GameObjects.Length; i++)
             {
                 var obj = _GameObjects[i];

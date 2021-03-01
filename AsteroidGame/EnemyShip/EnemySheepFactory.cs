@@ -26,5 +26,13 @@ namespace AsteroidGame
                         //Game.enemy_size,EnemyShipTypes.StarDestroyerDown);
             return enemy;
         }
+        public Object CreateType(Random Rnd,EnemyShipTypes Type)
+        {
+            EnemySheep enemy = new EnemySheep(
+                        new Point(Rnd.Next(0, Game.Width), Rnd.Next(0, Game.Height)),
+                        new Point(Rnd.Next(0, Game.enemy_max_speed), 0),
+                        Game.enemy_size, Type);
+            return enemy;
+        }
     }
 }

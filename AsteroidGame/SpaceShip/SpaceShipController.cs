@@ -53,6 +53,26 @@ namespace AsteroidGame
                 case Keys.A:
                     _SpaceShip.MoveBack();
                     break;
+
+                case Keys.T:
+                    switch(_SpaceShip.Type)
+                    {
+                        case SpaceShipTypes.X_Wing:
+                            _SpaceShip.ChangeType(SpaceShipTypes.Falcon);
+                        break;
+                        case SpaceShipTypes.Falcon:
+                            _SpaceShip.ChangeType(SpaceShipTypes.RebelSheep);
+                            break;
+                        case SpaceShipTypes.RebelSheep:
+                            _SpaceShip.ChangeType(SpaceShipTypes.SnowSpeeder);
+                            break;
+                        case SpaceShipTypes.SnowSpeeder:
+                            _SpaceShip.ChangeType(SpaceShipTypes.X_Wing);
+                            break;
+
+                    }
+
+                    break;
             }
         }
     }

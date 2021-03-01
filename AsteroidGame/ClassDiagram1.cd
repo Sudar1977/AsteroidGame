@@ -1,61 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="AsteroidGame.VisualObjects.Asteroid">
+  <Class Name="AsteroidGame.VisualObjects.Asteroid" Collapsed="true">
     <Position X="4.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAACAAAACBAAAAAAAAAAA=</HashCode>
-      <FileName>VisualObjects\Asteroid.cs</FileName>
+      <FileName>Asteroid\Asteroid.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="AsteroidGame.VisualObjects.Bullet">
-    <Position X="6.75" Y="4.5" Width="1.5" />
+  <Class Name="AsteroidGame.VisualObjects.Bullet" Collapsed="true">
+    <Position X="10.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAgAAAAAAAAgwAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>VisualObjects\Bullet.cs</FileName>
+      <FileName>Bullet\Bullet.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AsteroidGame.VisualObjects.ImageObject">
+  <Class Name="AsteroidGame.VisualObjects.ImageObject" Collapsed="true">
     <Position X="4.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAgAAAAAAAAEAAAAAAAQAAAAAAAAAAAA=</HashCode>
       <FileName>VisualObjects\ImageObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AsteroidGame.VisualObjects.SpaceShip">
-    <Position X="11" Y="1.75" Width="1.5" />
+  <Class Name="AsteroidGame.VisualObjects.SpaceShip" Collapsed="true">
+    <Position X="6.75" Y="4.5" Width="1.5" />
     <InheritanceLine Type="AsteroidGame.VisualObjects.ImageObject" FixedToPoint="true">
       <Path>
-        <Point X="5.906" Y="1.75" />
-        <Point X="5.906" Y="1.375" />
-        <Point X="7.417" Y="1.375" Type="JumpStart" />
-        <Point X="7.583" Y="1.375" Type="JumpEnd" />
-        <Point X="11.812" Y="1.375" />
-        <Point X="11.812" Y="1.75" />
+        <Point X="5.5" Y="2.441" />
+        <Point X="5.5" Y="4.125" />
+        <Point X="7.562" Y="4.125" />
+        <Point X="7.562" Y="4.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAUAIAEAAAQAQgAgAQAEAACAACEEAACAQAAAAoEAgAA=</HashCode>
+      <HashCode>AAEAMAEAAAQAQAAgAQEEAACAACEEAACAQQAAAoEAhAA=</HashCode>
       <FileName>SpaceShip\SpaceShip.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="AsteroidGame.VisualObjects.Star">
-    <Position X="8.75" Y="1.75" Width="1.5" />
+  <Class Name="AsteroidGame.VisualObjects.Star" Collapsed="true">
+    <Position X="7" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VisualObjects\Star.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AsteroidGame.VisualObjects.VisualObject" Collapsed="true">
-    <Position X="6.75" Y="0.5" Width="1.5" />
+    <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAgAAAAAIgAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VisualObjects\VisualObject.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AsteroidGame.VisualObjects.ColissionObject">
-    <Position X="6.75" Y="1.75" Width="1.5" />
+  <Class Name="AsteroidGame.VisualObjects.ColissionObject" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAACAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>VisualObjects\ColissionObject.cs</FileName>
@@ -65,24 +63,131 @@
   <Class Name="AsteroidGame.VisualObjects.EnemySheep" Collapsed="true">
     <Position X="2.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAACAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAEAAAAACAAAACBAAAAAAAAAAA=</HashCode>
       <FileName>EnemyShip\EnemySheep.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="AsteroidGame.VisualObjects.EnemyShipScales" Collapsed="true">
-    <Position X="0.5" Y="4.75" Width="1.5" />
+    <Position X="1.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>EnemyShip\Config\EnemyShipScales.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="AsteroidGame.BulletCollisionController" Collapsed="true">
+    <Position X="12.25" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAgAAAAAAAAAAAAAAAABAAAAAEAAAAA=</HashCode>
+      <FileName>Bullet\BulletCollisionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.BulletsList" Collapsed="true">
+    <Position X="12.25" Y="4.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAQEgAAAAABAAgAAAAAABAAAAAAAAAAACAAAAABAAAA=</HashCode>
+      <FileName>Bullet\BulletsList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.SpaceShipCollisionController" Collapsed="true">
+    <Position X="6.75" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAgAAAAAAAAAAAAAAAABAAAAAAAAgAA=</HashCode>
+      <FileName>SpaceShip\SpaceShipCollisionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.SpaceShipController" Collapsed="true">
+    <Position X="6.75" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>SpaceShip\SpaceShipController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.VisualObjects.EnemyShipImage" Collapsed="true">
+    <Position X="1.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnemyShip\Config\EnemyShipImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.EnemySheepFactory" Collapsed="true">
+    <Position X="1" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnemyShip\EnemySheepFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AsteroidGame.AsteroidFactory" Collapsed="true">
+    <Position X="4.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Asteroid\AsteroidFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AsteroidGame.Game" Collapsed="true">
+    <Position X="14.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGRAgASABAAhAzBCACQIAEAAQAAAACgAAKAoACAAkAA=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.LoadScens" Collapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAACBAAAAAAAAAAA=</HashCode>
+      <FileName>LoadScens.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.Music" Collapsed="true">
+    <Position X="14.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAABACAEIAAAAgAAAABAAAAAAACABAAAAAAA=</HashCode>
+      <FileName>Music.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.SpaceShipScales" Collapsed="true">
+    <Position X="8.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>SpaceShip\Config\SpaceShipConfigs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.SpaceShipImage" Collapsed="true">
+    <Position X="8.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceShip\Config\SpaceShipConfigs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="AsteroidGame.ICollision">
-    <Position X="2.5" Y="0.5" Width="1.5" />
+    <Position X="2" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>ICollision.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="AsteroidGame.IEnemyFactory">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnemyShip\IEnemyFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="AsteroidGame.VisualObjects.EnemyShipTypes" Collapsed="true">
+    <Position X="1.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAgAAACABAAAAAAAAEAAAAACAAAAAAAA=</HashCode>
+      <FileName>EnemyShip\Config\EnemyShipTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AsteroidGame.SpaceShipTypes" Collapsed="true">
+    <Position X="8.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAABEAA=</HashCode>
+      <FileName>SpaceShip\Config\SpaceShipConfigs.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
