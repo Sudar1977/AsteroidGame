@@ -3,16 +3,18 @@ using System;
 
 namespace AsteroidGame
 {
-    internal class CollisionCotroller
+    internal class SpaceShipCollisionController
     {
         private readonly IEnemyFactory _AsteroidFactory = new AsteroidFactory();
         private readonly IEnemyFactory _EnemyShipFactory = new EnemySheepFactory();
 
-        public CollisionCotroller()
+        SpaceShip _SpaceShip;
+        public SpaceShipCollisionController(SpaceShip ship)
         {
-
+            _SpaceShip = ship;
         }
-        public void CollisionVisualObjects(VisualObject[] _GameObjects, Random _Rnd)
+
+        public void Collision(VisualObject[] _GameObjects, Random _Rnd)
         {
             for (var i = 0; i < _GameObjects.Length; i++)
             {
@@ -20,17 +22,19 @@ namespace AsteroidGame
                 if (obj is ICollision)
                 {
                     var collision_object = (ICollision)obj;
-                    if (Game.__SpaceShip.CheckCollision(collision_object))
+                    if (_SpaceShip.CheckCollision(collision_object))
                     {
                         //            if(is_collision && obj is Asteroid asteroid)
                         if (collision_object is Asteroid asteroid)
                         {
                             _GameObjects[i] = (Asteroid)_AsteroidFactory.Create(_Rnd);
-                            Game.__SpaceShip.ChangeEnergy(-asteroid.Power);
+                            _SpaceShip.ChangeEnergy(-asteroid.Power);
                         }
                     }
                 }
             }
         }
+
     }
+
 }

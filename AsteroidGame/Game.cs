@@ -39,8 +39,9 @@ namespace AsteroidGame
         private readonly Random _Rnd = new Random();
         private readonly LoadScens _LoadScens = new LoadScens();
         private SpaceShipController _SpaceShipController;
-        private readonly CollisionCotroller _CollisionCotroller = new CollisionCotroller();
-        private readonly BulletCollisionController _BulletCollisionController = new BulletCollisionController();
+        private SpaceShipCollisionController _SpaceShipCollisionController;
+        private BulletCollisionController _BulletCollisionController;// = new BulletCollisionController();
+        
         private BulletsList _BulletsList;// = new BulletsList();
 
         private readonly TextureBrush _BackGroundTexture = new TextureBrush(Properties.Resources.DeathStar);
@@ -68,8 +69,10 @@ namespace AsteroidGame
 
 
             _BulletsList = new BulletsList();
+            _BulletCollisionController = new BulletCollisionController(_BulletsList);
             __SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10));
             _SpaceShipController = new SpaceShipController(__SpaceShip);
+            _SpaceShipCollisionController = new SpaceShipCollisionController(__SpaceShip);
             __SpaceShip.Destoyed += OnSheepDestroyed;
             __SpaceShip.BulletShoot += _BulletsList.OnBulletShoot;
 
@@ -145,8 +148,8 @@ namespace AsteroidGame
                 game_object?.Update();
             }
             _BulletsList.Update();
-            _CollisionCotroller.CollisionVisualObjects(_GameObjects, _Rnd);
-            _BulletCollisionController.Collision(_GameObjects, _Rnd, _BulletsList);
+            _BulletCollisionController.Collision(_GameObjects, _Rnd);
+            _SpaceShipCollisionController.Collision(_GameObjects, _Rnd);
         }
     }
 }

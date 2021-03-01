@@ -46,21 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsteroidFactory.cs" />
-    <Compile Include="BulletCollisionController.cs" />
-    <Compile Include="BulletsList.cs" />
-    <Compile Include="CollisionCotroller.cs" />
+    <Compile Include="Asteroid\AsteroidFactory.cs" />
+    <Compile Include="Bullet\BulletCollisionController.cs" />
+    <Compile Include="Bullet\BulletsList.cs" />
     <Compile Include="EnemyShip\EnemySheepFactory.cs" />
     <Compile Include="ICollision.cs" />
     <Compile Include="EnemyShip\IEnemyFactory.cs" />
     <Compile Include="LoadScens.cs" />
     <Compile Include="Music.cs" />
+    <Compile Include="SpaceShip\SpaceShipCollisionController.cs" />
     <Compile Include="SpaceShip\SpaceShipController.cs" />
-    <Compile Include="VisualObjects\Asteroid.cs" />
+    <Compile Include="Asteroid\Asteroid.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VisualObjects\Bullet.cs" />
+    <Compile Include="Bullet\Bullet.cs" />
     <Compile Include="VisualObjects\ColissionObject.cs" />
     <Compile Include="EnemyShip\EnemySheep.cs" />
     <Compile Include="EnemyShip\Config\EnemyShipImage.cs" />
