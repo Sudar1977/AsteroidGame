@@ -30,6 +30,11 @@ namespace AsteroidGame
                             _GameObjects[i] = (Asteroid)_AsteroidFactory.Create(_Rnd);
                             _SpaceShip.ChangeEnergy(-asteroid.Power);
                         }
+                        if (collision_object is EnemySheep enemy)
+                        {
+                            _GameObjects[i] = (EnemySheep)_EnemyShipFactory.Create(_Rnd);
+                            _SpaceShip.ChangeEnergy(-enemy.Power);
+                        }
                     }
                 }
             }

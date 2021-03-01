@@ -55,7 +55,8 @@ namespace AsteroidGame
                     break;
 
                 case Keys.T:
-                    switch(_SpaceShip.Type)
+                case Keys.P:
+                    switch (_SpaceShip.Type)
                     {
                         case SpaceShipTypes.X_Wing:
                             _SpaceShip.ChangeType(SpaceShipTypes.Falcon);
@@ -69,10 +70,34 @@ namespace AsteroidGame
                         case SpaceShipTypes.SnowSpeeder:
                             _SpaceShip.ChangeType(SpaceShipTypes.X_Wing);
                             break;
-
                     }
-
                     break;
+
+                case Keys.E:
+                case Keys.R:
+                    switch (Game.__EnemyShipType)
+                    {
+                        case EnemyShipTypes.Tie:
+                            Game.__EnemyShipType = EnemyShipTypes.Bomber;
+                            break;
+                        case EnemyShipTypes.Bomber:
+                            Game.__EnemyShipType = EnemyShipTypes.BomberRot;
+                            break;
+                        case EnemyShipTypes.BomberRot:
+                            Game.__EnemyShipType = EnemyShipTypes.StarDestroyerDown;
+                            break;
+                        case EnemyShipTypes.StarDestroyerDown:
+                            Game.__EnemyShipType = EnemyShipTypes.StarDestroyerLeft;
+                            break;
+                        case EnemyShipTypes.StarDestroyerLeft:
+                            Game.__EnemyShipType = EnemyShipTypes.StarDestroyerRebel;
+                            break;
+                        case EnemyShipTypes.StarDestroyerRebel:
+                            Game.__EnemyShipType = EnemyShipTypes.Tie;
+                            break;
+                    }
+                    break;
+
             }
         }
     }

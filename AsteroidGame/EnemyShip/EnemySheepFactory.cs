@@ -19,11 +19,14 @@ namespace AsteroidGame
             EnemySheep enemy = new EnemySheep(
                         new Point(Rnd.Next(0, Game.Width),Rnd.Next(0, Game.Height)),
                         new Point(Rnd.Next(0, Game.enemy_max_speed), 0),
-                        Game.enemy_size,EnemyShipTypes.Tie);
+                        //Game.enemy_size,EnemyShipTypes.Tie);
+                        Game.enemy_size,Game.__EnemyShipType);
                         //Game.enemy_size,EnemyShipTypes.BomberRot);
                         //Game.enemy_size,EnemyShipTypes.StarDestroyerRebel);
                         //Game.enemy_size,EnemyShipTypes.StarDestroyerLeft);
                         //Game.enemy_size,EnemyShipTypes.StarDestroyerDown);
+            // нужно как-то узнавать, какие типы кораблей генерировать
+
             return enemy;
         }
         public Object CreateType(Random Rnd,EnemyShipTypes Type)
@@ -34,5 +37,14 @@ namespace AsteroidGame
                         Game.enemy_size, Type);
             return enemy;
         }
+        public Object Create(Random Rnd, EnemyShipTypes Type)
+        {
+            EnemySheep enemy = new EnemySheep(
+                        new Point(Rnd.Next(0, Game.Width), Rnd.Next(0, Game.Height)),
+                        new Point(Rnd.Next(0, Game.enemy_max_speed), 0),
+                        Game.enemy_size, Type);
+            return enemy;
+        }
+
     }
 }

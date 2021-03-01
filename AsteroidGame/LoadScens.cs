@@ -26,6 +26,7 @@ namespace AsteroidGame
             }
             for (var i = 0; i < Game.enemy_count; i++)
             {
+                //game_objects.Add((EnemySheep)_EnemyShipFactory.CreateType(_Rnd,EnemyShipTypes.Bomber));
                 game_objects.Add((EnemySheep)_EnemyShipFactory.Create(_Rnd));
             }
             game_objects.Add(new Asteroid(new Point(Game.Width / 2, 200), new Point(-Game.asteroid_max_speed, 0), Game.asteroid_size));

@@ -18,6 +18,8 @@ namespace AsteroidGame
         /// <summary> Task 4 Lesson 3 Добавить подсчет очков за сбитые астероиды./// </summary>
         public static int _Counter = 0;
 
+        public static EnemyShipTypes __EnemyShipType = EnemyShipTypes.Tie;
+
         public const int asteroid_count = 10;
         public const int asteroid_size = 50;
         public const int asteroid_max_speed = 20;
@@ -70,7 +72,7 @@ namespace AsteroidGame
 
             _BulletsList = new BulletsList();
             _BulletCollisionController = new BulletCollisionController(_BulletsList);
-            _SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10),SpaceShipTypes.X_Wing);
+            _SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10),SpaceShipTypes.SnowSpeeder);
             _SpaceShipController = new SpaceShipController(_SpaceShip);
             _SpaceShipCollisionController = new SpaceShipCollisionController(_SpaceShip);
             _SpaceShip.Destoyed += OnSheepDestroyed;
@@ -100,6 +102,9 @@ namespace AsteroidGame
             //MessageBox.Show("Just do it!!!!");
             _ButtonNewGame.Visible = false;
             _SpaceShip.EnergyRestore();
+            __EnemyShipType = EnemyShipTypes.Tie;
+            _SpaceShip.ChangeType(SpaceShipTypes.SnowSpeeder);
+            _GameObjects = _LoadScens.LoadSceneObjects(_Rnd);
             //Music.MissionImpossible();
             _Timer.Start();
         }
@@ -116,6 +121,7 @@ namespace AsteroidGame
             g.FillRectangle(_BackGroundTexture, new RectangleF(0, 0, _BackGroundTexture.Image.Width, _BackGroundTexture.Image.Height));
             g.DrawString($"{_Counter}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 10);
             g.DrawString($"{_SpaceShip.Energy}", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 35);
+            g.DrawString("Сhange SpaceShip <T>, Change Enemy <E>", new Font(FontFamily.GenericSerif, 20, FontStyle.Bold), Brushes.LightBlue, 10, 70);
             foreach (var game_object in _GameObjects)
                 game_object?.Draw(g);
             _SpaceShip.Draw(g);

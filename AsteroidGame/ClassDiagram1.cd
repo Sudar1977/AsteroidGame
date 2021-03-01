@@ -147,18 +147,18 @@
       <FileName>Music.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AsteroidGame.SpaceShipScales" Collapsed="true">
-    <Position X="8.25" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>SpaceShip\Config\SpaceShipConfigs.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="AsteroidGame.SpaceShipImage" Collapsed="true">
     <Position X="8.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>SpaceShip\Config\SpaceShipConfigs.cs</FileName>
+      <FileName>SpaceShip\Config\SpaceShipImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AsteroidGame.SpaceShipScales" Collapsed="true">
+    <Position X="8.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>SpaceShip\Config\SpaceShipScales.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="AsteroidGame.ICollision">
@@ -186,7 +186,7 @@
     <Position X="8.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAABEAA=</HashCode>
-      <FileName>SpaceShip\Config\SpaceShipConfigs.cs</FileName>
+      <FileName>SpaceShip\Config\SpaceShipTypes.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

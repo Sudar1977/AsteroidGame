@@ -11,7 +11,7 @@
                     Scale = 5;
                     break;
                 case EnemyShipTypes.Bomber:
-                    Scale = 5;
+                    Scale = 7;
                     break;
                 case EnemyShipTypes.BomberRot:
                     Scale = 5;

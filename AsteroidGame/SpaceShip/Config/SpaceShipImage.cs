@@ -7,37 +7,6 @@ using System.Threading.Tasks;
 
 namespace AsteroidGame
 {
-    public enum SpaceShipTypes
-    {
-        X_Wing = 0,
-        Falcon = 1,
-        RebelSheep = 2, 
-        SnowSpeeder =3, 
-    }
-
-    internal class SpaceShipScales
-    {
-        public static int GetScale(SpaceShipTypes Type)
-        {
-            int Scale = 1;
-            switch (Type)
-            {
-                case SpaceShipTypes.Falcon:
-                    Scale = 5;
-                break;
-                case SpaceShipTypes.RebelSheep:
-                    Scale = 6;
-                    break;
-                case SpaceShipTypes.SnowSpeeder:
-                    Scale = 20;
-                    break;
-                case SpaceShipTypes.X_Wing:
-                    Scale = 5;
-                    break;
-            }
-            return Scale;
-        }
-    }
 
     internal class SpaceShipImage
     {
