@@ -20,9 +20,9 @@ namespace AsteroidGame.VisualObjects
         {
             _Position.X += _Direction.X;
             _Position.Y += _Direction.Y;
-            if ((_Position.X< 0)||(_Position.X > Game.Width))
+            if ((_Position.X< 0)||(_Position.X > Game.Width - _Size.Width))
                 _Direction.X *= -1;
-            if ((_Position.Y< 0) || (_Position.Y > Game.Height))
+            if ((_Position.Y< 0) || (_Position.Y > Game.Height - _Size.Height))
                 _Direction.Y *= -1;
         }
 

@@ -20,11 +20,9 @@ namespace AsteroidGame
 
         public static EnemyShipTypes __EnemyShipType = EnemyShipTypes.Tie;
 
-        public const int asteroid_count = 10;
         public const int asteroid_size = 50;
         public const int asteroid_max_speed = 20;
 
-        public const int enemy_count = 10;
         public const int enemy_size = 50;
         public const int enemy_max_speed = 20;
 
@@ -35,9 +33,13 @@ namespace AsteroidGame
         private Timer _Timer;
         private Button _ButtonNewGame;
 
-        private readonly Random _Rnd = new Random();
-        private readonly LoadScens _LoadScens = new LoadScens();
+        public static readonly Random _Rnd = new Random();
 
+        private IEnemyFactory _AsteroidFactory;// = new AsteroidFactory();
+        private IEnemyFactory _EnemyShipFactory;// = new EnemySheepFactory();
+
+        private LoadScens _LoadScens;// = new LoadScens();
+        //private LoadScensController _LoadScensController;
         private SpaceShip _SpaceShip;
         private SpaceShipController _SpaceShipController;
         private SpaceShipCollisionController _SpaceShipCollisionController;
@@ -47,6 +49,7 @@ namespace AsteroidGame
         
 
         private readonly TextureBrush _BackGroundTexture = new TextureBrush(Properties.Resources.DeathStar);
+        private readonly TextureBrush _BackGroundTexturePause = new TextureBrush(Properties.Resources.StarWars);
         //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarDestroyer3);
         //private static readonly TextureBrush _Texture1 = new TextureBrush(Properties.Resources.StarWars);
 
@@ -69,12 +72,14 @@ namespace AsteroidGame
             _Timer.Tick += OnTimerTick;
             _Timer.Start();
 
+            _AsteroidFactory = new AsteroidFactory();
+            _EnemyShipFactory= new EnemySheepFactory();
 
             _BulletsList = new BulletsList();
-            _BulletCollisionController = new BulletCollisionController(_BulletsList);
+            _BulletCollisionController = new BulletCollisionController(_BulletsList,_AsteroidFactory,_EnemyShipFactory);
             _SpaceShip = new SpaceShip(new Point(20, 400), new Point(10, 10),SpaceShipTypes.SnowSpeeder);
             _SpaceShipController = new SpaceShipController(_SpaceShip);
-            _SpaceShipCollisionController = new SpaceShipCollisionController(_SpaceShip);
+            _SpaceShipCollisionController = new SpaceShipCollisionController(_SpaceShip,_AsteroidFactory,_EnemyShipFactory);
             _SpaceShip.Destoyed += OnSheepDestroyed;
             _SpaceShip.BulletShoot += _BulletsList.OnBulletShoot;
 
@@ -93,6 +98,9 @@ namespace AsteroidGame
             _ButtonNewGame.Visible = false;
             form.Controls.Add(_ButtonNewGame);
 
+            _LoadScens = new LoadScens(_AsteroidFactory,_EnemyShipFactory);
+            //_LoadScensController = new LoadScensController(_LoadScens);
+            form.KeyDown += OnFormKeyDown;
 
             //test_button
         }
@@ -142,8 +150,9 @@ namespace AsteroidGame
             _Timer.Stop();
             var g = _Buffer.Graphics;
             _ButtonNewGame.Visible = true;
-            g.Clear(Color.DarkBlue);
-            g.DrawString("Game over!!!", new Font(FontFamily.GenericSerif, 60, FontStyle.Bold), Brushes.Red, 200, 100);
+            //g.Clear(Color.DarkBlue);
+            g.Clear(Color.Black);
+            g.FillRectangle(_BackGroundTexturePause, new RectangleF(0, 0, _BackGroundTexturePause.Image.Width, _BackGroundTexturePause.Image.Height));
             _Buffer.Render();
         }
 
@@ -158,5 +167,66 @@ namespace AsteroidGame
             //_BulletCollisionController.Collision(_Rnd);
             _SpaceShipCollisionController.Collision(_GameObjects, _Rnd);
         }
+        public void OnFormKeyDown(object Sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.E:
+                case Keys.R:
+                    switch (Game.__EnemyShipType)
+                    {
+                        case EnemyShipTypes.Tie:
+                            Game.__EnemyShipType = EnemyShipTypes.Bomber;
+                            break;
+                        case EnemyShipTypes.Bomber:
+                            Game.__EnemyShipType = EnemyShipTypes.BomberRot;
+                            break;
+                        case EnemyShipTypes.BomberRot:
+                            Game.__EnemyShipType = EnemyShipTypes.StarDestroyerDown;
+                            break;
+                        case EnemyShipTypes.StarDestroyerDown:
+                            Game.__EnemyShipType = EnemyShipTypes.StarDestroyerLeft;
+                            break;
+                        case EnemyShipTypes.StarDestroyerLeft:
+                            Game.__EnemyShipType = EnemyShipTypes.StarDestroyerRebel;
+                            break;
+                        case EnemyShipTypes.StarDestroyerRebel:
+                            Game.__EnemyShipType = EnemyShipTypes.Tie;
+                            break;
+                    }
+                    break;
+                case Keys.D0:
+                    _GameObjects = _LoadScens.LoadSceneObjects(Game._Rnd, 0,_SpaceShip);
+                    break;
+                case Keys.D1:
+                    _GameObjects = _LoadScens.LoadSceneObjects(Game._Rnd, 1, _SpaceShip);
+                    break;
+                case Keys.D2:
+                    _GameObjects = _LoadScens.LoadSceneObjects(Game._Rnd, 2, _SpaceShip);
+                    break;
+                case Keys.D3:
+                    _GameObjects = _LoadScens.LoadSceneObjects(Game._Rnd, 3, _SpaceShip);
+                    break;
+                case Keys.D4:
+                    _GameObjects = _LoadScens.LoadSceneObjects(Game._Rnd, 4, _SpaceShip);
+                    break;
+                case Keys.D5:
+                    _GameObjects = _LoadScens.LoadSceneObjects(Game._Rnd, 5, _SpaceShip);
+                    break;
+                case Keys.D6:
+                    _GameObjects = _LoadScens.LoadSceneObjects(Game._Rnd, 6, _SpaceShip);
+                    break;
+                case Keys.D7:
+                    _GameObjects = _LoadScens.LoadSceneObjects(Game._Rnd, 7, _SpaceShip);
+                    break;
+                case Keys.D8:
+                    _GameObjects = _LoadScens.LoadSceneObjects(Game._Rnd, 8, _SpaceShip);
+                    break;
+                case Keys.D9:
+                    _GameObjects = _LoadScens.LoadSceneObjects(Game._Rnd, 9, _SpaceShip);
+                    break;
+            }
+        }
+
     }
 }

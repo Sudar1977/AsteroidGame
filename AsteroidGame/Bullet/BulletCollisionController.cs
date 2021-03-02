@@ -5,16 +5,15 @@ namespace AsteroidGame
 {
     internal class BulletCollisionController
     {
-        private readonly IEnemyFactory _AsteroidFactory = new AsteroidFactory();
-        private readonly IEnemyFactory _EnemyShipFactory = new EnemySheepFactory();
+        private readonly IEnemyFactory _AsteroidFactory;// = new AsteroidFactory();
+        private readonly IEnemyFactory _EnemyShipFactory;// = new EnemySheepFactory();
         private readonly BulletsList _bullets;
-        //private VisualObject[] _GameObjects;
 
-        //public BulletCollisionController(VisualObject[] GameObjects,BulletsList Bullets)
-        public BulletCollisionController(BulletsList Bullets)
+        public BulletCollisionController(BulletsList bullets,IEnemyFactory asteroidFactory, IEnemyFactory enemyShipFactory)
         {
-            _bullets = Bullets;
-            //_GameObjects = GameObjects;
+            _AsteroidFactory = asteroidFactory;
+            _EnemyShipFactory = enemyShipFactory;
+            _bullets = bullets;
         }
 
         //public void Collision(VisualObject[] _GameObjects, Random _Rnd, BulletsList bullets)
