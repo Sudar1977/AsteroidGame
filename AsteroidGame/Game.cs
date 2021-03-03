@@ -26,6 +26,8 @@ namespace AsteroidGame
         public const int enemy_size = 50;
         public const int enemy_max_speed = 20;
 
+        private int CurrentLevel = 0;
+
         private BufferedGraphicsContext _Context;
         private BufferedGraphics _Buffer;
 
@@ -166,7 +168,22 @@ namespace AsteroidGame
             _BulletCollisionController.Collision(_GameObjects, _Rnd);
             //_BulletCollisionController.Collision(_Rnd);
             _SpaceShipCollisionController.Collision(_GameObjects, _Rnd);
+            CheckScore();
         }
+
+        private void CheckScore()
+        {
+            if(_Counter>100)
+            {
+                _Counter = 0;
+                _LoadScens.LoadSceneObjects(Game._Rnd, CurrentLevel, _SpaceShip);
+                CurrentLevel++;
+                if (CurrentLevel > 6)
+                    CurrentLevel = 0;
+
+            }
+        }
+
         public void OnFormKeyDown(object Sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
