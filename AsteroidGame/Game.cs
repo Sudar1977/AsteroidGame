@@ -33,7 +33,8 @@ namespace AsteroidGame
 
         private VisualObject[] _GameObjects;
         private Timer _Timer;
-        private Button _ButtonNewGame;
+        //private Button _ButtonNewGame;
+        private StartButton _StartButton;
 
         public static readonly Random _Rnd = new Random();
 
@@ -90,19 +91,13 @@ namespace AsteroidGame
             form.MouseClick += _SpaceShipController.MouseClick;
             //form.KeyPress += OnFormKeyPress;
 
-            _ButtonNewGame = new Button();
-            _ButtonNewGame.Width = 200;
-            _ButtonNewGame.Height = 30;
-            _ButtonNewGame.Text = "New GAME!!!";
-            _ButtonNewGame.Left = 20;
-            _ButtonNewGame.Top = 30;
-            _ButtonNewGame.Click += OnTestButtonClicked;
-            _ButtonNewGame.Visible = false;
-            form.Controls.Add(_ButtonNewGame);
+            _StartButton = new StartButton();
+            _StartButton._ButtonNewGame.Click += OnTestButtonClicked;
+            form.Controls.Add(_StartButton._ButtonNewGame);
 
             _LoadScens = new LoadScens(_AsteroidFactory,_EnemyShipFactory);
-            //_LoadScensController = new LoadScensController(_LoadScens);
             form.KeyDown += OnFormKeyDown;
+            //StartScreen();
 
             //test_button
         }
@@ -110,13 +105,16 @@ namespace AsteroidGame
         private void OnTestButtonClicked(object Sender, EventArgs e)
         {
             //MessageBox.Show("Just do it!!!!");
-            _ButtonNewGame.Visible = false;
+            _StartButton._ButtonNewGame.Visible = false;
+            _StartButton._ButtonNewGame.Enabled = false;
             _SpaceShip.EnergyRestore();
             __EnemyShipType = EnemyShipTypes.Tie;
             _SpaceShip.ChangeType(SpaceShipTypes.SnowSpeeder);
-            _GameObjects = _LoadScens.LoadSceneObjects(_Rnd);
+            //_GameObjects = _LoadScens.LoadSceneObjects(_Rnd);
+            Load();
             //Music.MissionImpossible();
             _Timer.Start();
+            
         }
 
         private void OnTimerTick(object Sender, EventArgs e)
@@ -144,18 +142,30 @@ namespace AsteroidGame
 
         public void Load()
         {
-            _GameObjects = _LoadScens.LoadSceneObjects(_Rnd);
+            _GameObjects = _LoadScens.LoadSceneObjects(_Rnd, CurrentLevel,_SpaceShip);
         }
+
+        public void LoadLevel(int Level)
+        {
+            _GameObjects = _LoadScens.LoadSceneObjects(_Rnd, Level, _SpaceShip);
+        }
+
+        private void StartScreen()
+        {
+            _Timer.Stop();
+            _StartButton._ButtonNewGame.Enabled = true;
+            _StartButton._ButtonNewGame.Visible = true;
+            var g = _Buffer.Graphics;
+            g.Clear(Color.Black);
+            g.FillRectangle(_BackGroundTexturePause, new RectangleF(0, 0, _BackGroundTexturePause.Image.Width, _BackGroundTexturePause.Image.Height));
+            //g.FillRectangle(_BackGroundTexturePause, new RectangleF(0, 0, Width, Height));
+            _Buffer.Render();
+        }
+
 
         private void OnSheepDestroyed(object sender, EventArgs e)
         {
-            _Timer.Stop();
-            var g = _Buffer.Graphics;
-            _ButtonNewGame.Visible = true;
-            //g.Clear(Color.DarkBlue);
-            g.Clear(Color.Black);
-            g.FillRectangle(_BackGroundTexturePause, new RectangleF(0, 0, _BackGroundTexturePause.Image.Width, _BackGroundTexturePause.Image.Height));
-            _Buffer.Render();
+            StartScreen();
         }
 
         public void Update()
@@ -166,7 +176,6 @@ namespace AsteroidGame
             }
             _BulletsList.Update();
             _BulletCollisionController.Collision(_GameObjects, _Rnd);
-            //_BulletCollisionController.Collision(_Rnd);
             _SpaceShipCollisionController.Collision(_GameObjects, _Rnd);
             CheckScore();
         }
@@ -176,7 +185,8 @@ namespace AsteroidGame
             if(_Counter>100)
             {
                 _Counter = 0;
-                _LoadScens.LoadSceneObjects(Game._Rnd, CurrentLevel, _SpaceShip);
+                Load();
+                //_LoadScens.LoadSceneObjects(Game._Rnd, CurrentLevel, _SpaceShip);
                 CurrentLevel++;
                 if (CurrentLevel > 6)
                     CurrentLevel = 0;
@@ -244,6 +254,5 @@ namespace AsteroidGame
                     break;
             }
         }
-
     }
 }
